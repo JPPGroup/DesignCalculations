@@ -8,7 +8,17 @@
         /// <summary>
         /// Human readable calculation name
         /// </summary>
-        public string CalculationName { get; set; }
+        public string CalculationName { get; protected set; }
+
+        /// <summary>
+        /// Human readable description
+        /// </summary>
+        public string Description { get; protected set; }
+
+        /// <summary>
+        /// Human readable reference to the corresponding design code
+        /// </summary>
+        public string Code { get; protected set; }
 
         /// <summary>
         /// Boolean indicating if calculation has run

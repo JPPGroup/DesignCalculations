@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignCalculations.Calculations", "src\DesignCalculations.Calculations\DesignCalculations.Calculations.csproj", "{1666D8C9-F880-4678-99EA-3B6E71F02A76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignCalculations.Core.Tests", "tests\DesignCalculations.Core.Tests\DesignCalculations.Core.Tests\DesignCalculations.Core.Tests.csproj", "{13E6F89D-BB39-484F-8647-027C36512A27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignCalculations.Calculations.Tests", "tests\DesignCalculations.Calculations.Tests\DesignCalculations.Calculations.Tests.csproj", "{13E6F89D-BB39-484F-8647-027C36512A27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
