@@ -38,9 +38,7 @@ namespace Jpp.DesignCalculations.Calculations.Tests.Design.Foundations
             calc.RemovedTreeInfluence = removedTrees;
             calc.TopOfConcreteLevel = topOfConcrete;
             calc.SoilPlasticity = changePotential;
-
-            CalculationContext context = new CalculationContext();
-            calc.Run(context, 0);
+            calc.Run();
 
             Assert.IsTrue(calc.Calculated, "Calculation failed to complete successfully");
 
@@ -54,7 +52,7 @@ namespace Jpp.DesignCalculations.Calculations.Tests.Design.Foundations
 
             CalculationContext context = new CalculationContext();
 
-            Assert.Throws(typeof(ArgumentNullException), () => calc.Run(context, 0));
+            Assert.Throws(typeof(ArgumentNullException), () => calc.Run());
             Assert.IsFalse(calc.Calculated, "Calculation should not have completed");
         }
     }

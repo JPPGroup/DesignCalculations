@@ -73,17 +73,11 @@ namespace Jpp.DesignCalculations.Calculations.Design.Foundations
             Code = Resources.NHBC2020FoundationDepth_Code;
         }
 
-        public override void Run(CalculationContext context, int currentCombinationIndex)
+        public override void Run()
         {
-            FoundationDepth = null;
-            MinimumFoundationDepth = null;
-            ExistingPlantingFoundationDepth = null;
-            ProposedPlantingFoundationDepth = null;
-            RemovedExistingPlantingFoundationDepth = null;
+            ResetCalculation();
+            VerifyInputs();
 
-            if (!ExistingGroundLevel.HasValue)
-                throw new ArgumentNullException (nameof(this.ExistingGroundLevel), Resources.NHBC2020FoundationDepth_ExistingGroundLevel_Missing);
-            
             SetMinimumDepth(ExistingGroundLevel.Value);
             ApplyTreeInfluences(ExistingGroundLevel.Value);
             SetMinimumThickness();

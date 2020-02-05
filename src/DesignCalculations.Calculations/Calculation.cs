@@ -1,4 +1,8 @@
-﻿namespace Jpp.DesignCalculations.Calculations
+﻿using System;
+using System.Linq;
+using System.Reflection;
+
+namespace Jpp.DesignCalculations.Calculations
 {
     /// <summary>
     /// Abstract class representing a single calculation
@@ -28,19 +32,38 @@
         /// <summary>
         /// Call to run calculation and set outputs
         /// </summary>
-        /// <param name="context">Calculation context to be used</param>
-        /// <param name="currentCombinationIndex">Current combination</param>
-        public abstract void Run(CalculationContext context, int currentCombinationIndex);
+        public abstract void Run();
 
         /// <summary>
-        /// Call to run calculation and set outputs for all combinations
+        /// Resets all outputs and calculated property to default values
         /// </summary>
-        /// <param name="context">Calculation context to be used</param>
-        public void Run(CalculationContext context)
+        public void ResetCalculation()
         {
-            for (int i = 0; i < context.Combinations.Count; i++)
+            Type t = GetType();
+            var outputs = t.GetProperties().Where(p => Attribute.IsDefined(p, typeof(OutputAttribute)));
+            foreach (PropertyInfo propertyInfo in outputs)
             {
-                Run(context, i);
+                propertyInfo.SetValue(this, null);
+            }
+
+            Calculated = false;
+        }
+
+        /// <summary>
+        /// Checks all required inputs are not null
+        /// </summary>
+        public void VerifyInputs()
+        {
+            Type t = GetType();
+            var outputs = t.GetProperties().Where(p => Attribute.IsDefined(p, typeof(InputAttribute)));
+            foreach (PropertyInfo propertyInfo in outputs)
+            {
+                InputAttribute inputAttribute = propertyInfo.GetCustomAttribute<InputAttribute>(true);
+                if (inputAttribute.Required)
+                {
+                    if (propertyInfo.GetValue(this) == null)
+                        throw new ArgumentNullException(inputAttribute.FriendlyName, "Missing value");
+                }
             }
         }
     }

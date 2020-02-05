@@ -16,6 +16,7 @@ namespace Jpp.DesignCalculations.Calculations
             FriendlyName = Resources.ResourceManager.GetString(name);
             Description = Resources.ResourceManager.GetString(description);
             Group = Resources.ResourceManager.GetString(group);
+            Required = required;
         }
 
         public InputAttribute(string name, bool required = false)
