@@ -1,6 +1,8 @@
-﻿namespace Jpp.DesignCalculations.Calculations.Tests.TestObjects
+﻿using Jpp.DesignCalculations.Calculations.Attributes;
+
+namespace Jpp.DesignCalculations.Calculations.Tests.TestObjects
 {
-    class BaseCalculation : Calculation
+    class BaseCalculation : ContextlessCalculation
     {
         [Input("Required Input", true)]
         public bool? RequiredInput { get; set; }

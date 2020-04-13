@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using Jpp.DesignCalculations.Calculations.Attributes;
 
 namespace Jpp.DesignCalculations.Calculations
 {
@@ -28,11 +29,6 @@ namespace Jpp.DesignCalculations.Calculations
         /// Boolean indicating if calculation has run
         /// </summary>
         public bool Calculated { get; set; } = false;
-        
-        /// <summary>
-        /// Call to run calculation and set outputs
-        /// </summary>
-        public abstract void Run();
 
         /// <summary>
         /// Resets all outputs and calculated property to default values

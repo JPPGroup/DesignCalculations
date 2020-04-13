@@ -1,4 +1,5 @@
 ﻿using System;
+using Jpp.DesignCalculations.Calculations.Attributes;
 using Jpp.DesignCalculations.Calculations.Properties;
 
 namespace Jpp.DesignCalculations.Calculations.Design.Foundations

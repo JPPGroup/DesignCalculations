@@ -15,6 +15,11 @@ namespace Jpp.DesignCalculations.Calculations
         /// </summary>
         public List<Combination> Combinations { get; }
 
+        /// <summary>
+        /// Integer that defines how many segments to split a bar into.
+        /// </summary>
+        public int NumberBarSegments { get; set; } = 10;
+
         public CalculationContext()
         {
             LoadCases = new List<LoadCase>();

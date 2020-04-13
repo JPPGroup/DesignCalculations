@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AbstractBar_CombinedUsage_Description" xml:space="preserve">
+    <value>Combined moment, shear and axial usage</value>
+  </data>
+  <data name="AbstractBar_CombinedUsage_Group" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="AbstractBar_CombinedUsage_Name" xml:space="preserve">
+    <value>Usage</value>
+  </data>
+  <data name="AbstractBar_CrossSection_Description" xml:space="preserve">
+    <value>Cross Section of Section</value>
+  </data>
+  <data name="AbstractBar_CrossSection_Group" xml:space="preserve">
+    <value>Section Properties</value>
+  </data>
+  <data name="AbstractBar_CrossSection_Name" xml:space="preserve">
+    <value>Cross Section</value>
+  </data>
+  <data name="AbstractBar_Material_Description" xml:space="preserve">
+    <value>Material of Section</value>
+  </data>
+  <data name="AbstractBar_Material_Group" xml:space="preserve">
+    <value>Section Properties</value>
+  </data>
+  <data name="AbstractBar_Material_Name" xml:space="preserve">
+    <value>Material</value>
+  </data>
   <data name="NHBC2020FoundationDepth_CalculationName" xml:space="preserve">
     <value>NHBC Foundation Depth 2020</value>
   </data>

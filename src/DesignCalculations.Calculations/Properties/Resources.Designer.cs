@@ -61,6 +61,87 @@ namespace Jpp.DesignCalculations.Calculations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Combined moment, shear and axial usage.
+        /// </summary>
+        internal static string AbstractBar_CombinedUsage_Description {
+            get {
+                return ResourceManager.GetString("AbstractBar_CombinedUsage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Results.
+        /// </summary>
+        internal static string AbstractBar_CombinedUsage_Group {
+            get {
+                return ResourceManager.GetString("AbstractBar_CombinedUsage_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage.
+        /// </summary>
+        internal static string AbstractBar_CombinedUsage_Name {
+            get {
+                return ResourceManager.GetString("AbstractBar_CombinedUsage_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cross Section of Section.
+        /// </summary>
+        internal static string AbstractBar_CrossSection_Description {
+            get {
+                return ResourceManager.GetString("AbstractBar_CrossSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section Properties.
+        /// </summary>
+        internal static string AbstractBar_CrossSection_Group {
+            get {
+                return ResourceManager.GetString("AbstractBar_CrossSection_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cross Section.
+        /// </summary>
+        internal static string AbstractBar_CrossSection_Name {
+            get {
+                return ResourceManager.GetString("AbstractBar_CrossSection_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Material of Section.
+        /// </summary>
+        internal static string AbstractBar_Material_Description {
+            get {
+                return ResourceManager.GetString("AbstractBar_Material_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section Properties.
+        /// </summary>
+        internal static string AbstractBar_Material_Group {
+            get {
+                return ResourceManager.GetString("AbstractBar_Material_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Material.
+        /// </summary>
+        internal static string AbstractBar_Material_Name {
+            get {
+                return ResourceManager.GetString("AbstractBar_Material_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NHBC Foundation Depth 2020.
         /// </summary>
         internal static string NHBC2020FoundationDepth_CalculationName {
