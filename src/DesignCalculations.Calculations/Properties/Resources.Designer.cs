@@ -61,6 +61,141 @@ namespace Jpp.DesignCalculations.Calculations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Applied load in kN/m.
+        /// </summary>
+        internal static string FoundationWidth_AppliedLoad_Description {
+            get {
+                return ResourceManager.GetString("FoundationWidth_AppliedLoad_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inputs.
+        /// </summary>
+        internal static string FoundationWidth_AppliedLoad_Group {
+            get {
+                return ResourceManager.GetString("FoundationWidth_AppliedLoad_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applied Load.
+        /// </summary>
+        internal static string FoundationWidth_AppliedLoad_Name {
+            get {
+                return ResourceManager.GetString("FoundationWidth_AppliedLoad_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foundation Width.
+        /// </summary>
+        internal static string FoundationWidth_CalculationName {
+            get {
+                return ResourceManager.GetString("FoundationWidth_CalculationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        internal static string FoundationWidth_Code {
+            get {
+                return ResourceManager.GetString("FoundationWidth_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculate required width of a trench fill foundation.
+        /// </summary>
+        internal static string FoundationWidth_Description {
+            get {
+                return ResourceManager.GetString("FoundationWidth_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allowable gorund bear pressure in kN with applied factor of safety.
+        /// </summary>
+        internal static string FoundationWidth_GroundBearingPressure_Description {
+            get {
+                return ResourceManager.GetString("FoundationWidth_GroundBearingPressure_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inputs.
+        /// </summary>
+        internal static string FoundationWidth_GroundBearingPressure_Group {
+            get {
+                return ResourceManager.GetString("FoundationWidth_GroundBearingPressure_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allowable Ground Bearing Pressure.
+        /// </summary>
+        internal static string FoundationWidth_GroundBearingPressure_Name {
+            get {
+                return ResourceManager.GetString("FoundationWidth_GroundBearingPressure_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculated width in metres.
+        /// </summary>
+        internal static string FoundationWidth_RequiredWidth_Description {
+            get {
+                return ResourceManager.GetString("FoundationWidth_RequiredWidth_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        internal static string FoundationWidth_RequiredWidth_Group {
+            get {
+                return ResourceManager.GetString("FoundationWidth_RequiredWidth_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Required Width.
+        /// </summary>
+        internal static string FoundationWidth_RequiredWidth_Name {
+            get {
+                return ResourceManager.GetString("FoundationWidth_RequiredWidth_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thickness of wall in metres.
+        /// </summary>
+        internal static string FoundationWidth_WallThickness_Description {
+            get {
+                return ResourceManager.GetString("FoundationWidth_WallThickness_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inputs.
+        /// </summary>
+        internal static string FoundationWidth_WallThickness_Group {
+            get {
+                return ResourceManager.GetString("FoundationWidth_WallThickness_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wall Thickness.
+        /// </summary>
+        internal static string FoundationWidth_WallThickness_Name {
+            get {
+                return ResourceManager.GetString("FoundationWidth_WallThickness_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NHBC Foundation Depth 2020.
         /// </summary>
         internal static string NHBC2020FoundationDepth_CalculationName {

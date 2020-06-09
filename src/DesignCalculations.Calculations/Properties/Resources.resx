@@ -117,6 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FoundationWidth_AppliedLoad_Description" xml:space="preserve">
+    <value>Applied load in kN/m</value>
+  </data>
+  <data name="FoundationWidth_AppliedLoad_Group" xml:space="preserve">
+    <value>Inputs</value>
+  </data>
+  <data name="FoundationWidth_AppliedLoad_Name" xml:space="preserve">
+    <value>Applied Load</value>
+  </data>
+  <data name="FoundationWidth_CalculationName" xml:space="preserve">
+    <value>Foundation Width</value>
+  </data>
+  <data name="FoundationWidth_Code" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="FoundationWidth_Description" xml:space="preserve">
+    <value>Calculate required width of a trench fill foundation</value>
+  </data>
+  <data name="FoundationWidth_GroundBearingPressure_Description" xml:space="preserve">
+    <value>Allowable gorund bear pressure in kN with applied factor of safety</value>
+  </data>
+  <data name="FoundationWidth_GroundBearingPressure_Group" xml:space="preserve">
+    <value>Inputs</value>
+  </data>
+  <data name="FoundationWidth_GroundBearingPressure_Name" xml:space="preserve">
+    <value>Allowable Ground Bearing Pressure</value>
+  </data>
+  <data name="FoundationWidth_RequiredWidth_Description" xml:space="preserve">
+    <value>Calculated width in metres</value>
+  </data>
+  <data name="FoundationWidth_RequiredWidth_Group" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="FoundationWidth_RequiredWidth_Name" xml:space="preserve">
+    <value>Required Width</value>
+  </data>
+  <data name="FoundationWidth_WallThickness_Description" xml:space="preserve">
+    <value>Thickness of wall in metres</value>
+  </data>
+  <data name="FoundationWidth_WallThickness_Group" xml:space="preserve">
+    <value>Inputs</value>
+  </data>
+  <data name="FoundationWidth_WallThickness_Name" xml:space="preserve">
+    <value>Wall Thickness</value>
+  </data>
   <data name="NHBC2020FoundationDepth_CalculationName" xml:space="preserve">
     <value>NHBC Foundation Depth 2020</value>
   </data>
