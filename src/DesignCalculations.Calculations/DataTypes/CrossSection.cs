@@ -19,5 +19,7 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes
         public double MinorSecondMomentOfArea { get; set; }
 
         public double Area { get; set; }
+
+        public double Height { get; set; }
     }
 }

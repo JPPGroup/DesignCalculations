@@ -9,6 +9,7 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes
     /// </summary>
     public class Material
     {
+        public string Name { get; set; }
         public double YoungsModulus { get; set; }
         public double YieldStrength { get; set; }
     }
