@@ -30,13 +30,18 @@ namespace Jpp.DesignCalculations.Calculations.Analysis.Bars
         public double[][] CombinedUsage { get; set; }
 
         /// <inheritdoc/>
-        public override void Run(CalculationContext context)
+        public override void ContextualRunInit(CalculationContext context)
         {
+            base.ContextualRunInit(context);
             Moment.CrossSection = CrossSection;
             Moment.Material = Material;
             Axial.CrossSection = CrossSection;
             Axial.Material = Material;
+        }
 
+        /// <inheritdoc/>
+        public override void RunCombination(int combinationIndex, Combination combination, CalculationContext context)
+        {
             Shear.Run(context);
             Moment.Run(context);
             Axial.Run(context);

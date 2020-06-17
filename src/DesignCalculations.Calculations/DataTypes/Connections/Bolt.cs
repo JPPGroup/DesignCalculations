@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
 {
@@ -14,13 +15,15 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
         public double Member2Thickness { get; set; }
         public double Member2UltimateStrength { get; set; }
 
-        public double Member1MajorEdgeDistance { get; set; }
-        public double Member2MajorEdgeDistance { get; set; }
-        public double Member1MinorEdgeDistance { get; set; }
-        public double Member2MinorEdgeDistance { get; set; }
+        public double? Member1MajorEdgeDistance { get; set; }
+        public double? Member2MajorEdgeDistance { get; set; }
+        public double? Member1MinorEdgeDistance { get; set; }
+        public double? Member2MinorEdgeDistance { get; set; }
 
-        public double MajorSpacing { get; set; }
-        public double MinorSpacing { get; set; }
+        public double? MajorSpacing { get; set; }
+        public double? MinorSpacing { get; set; }
+
+        public bool LimitShearByTension { get; set; }
 
         // Fub
         // 800 for grade 8.8 only 
@@ -37,14 +40,15 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
 
         public double TensionResistance { get; private set; }
 
-        public override void Run()
+        public override void RunBody(OutputBuilder builder)
         {
-            ResetCalculation();
-            VerifyInputs();
-            
             // 0.6 for grade 8.8 and 4.6, 0.5 for class 10.9
             // 0.8 to allow for presence of tension in bolt
             ShearResistance = 0.6 * DesignUltimateStrength * TensileStressArea / PartialFactorResistanceBolt;
+            if (LimitShearByTension) // If tensions is present assume its in full use, which reduces the shear down to 28% of its normal value
+                ShearResistance = ShearResistance * 0.4d / 1.4d; // 6.2.2 (2)
+
+
             Member1MajorBearingResistance = CalculateBearingResistance(Member1MajorEdgeDistance, MajorSpacing,
                 Member1MinorEdgeDistance, MinorSpacing, Member1UltimateStrength, Member1Thickness);
             Member2MajorBearingResistance = CalculateBearingResistance(Member2MajorEdgeDistance, MajorSpacing,
@@ -61,21 +65,41 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
             Calculated = true;
         }
 
-        private double CalculateBearingResistance(double majorEdgeDistance, double majorSpacing, double minorEdgeDistance, double minorSpacing, double memberUltimateStrength, double memberThickness)
+        private double CalculateBearingResistance(double? majorEdgeDistance, double? majorSpacing, double? minorEdgeDistance, double? minorSpacing, double memberUltimateStrength, double memberThickness)
         {
-            double Alpha = new[]
+            List<double> alphaValues = new List<double>()
             {
-                majorEdgeDistance / (3 * HoleDiameter),
-                majorSpacing / (3 * HoleDiameter),
-                DesignUltimateStrength / Member1UltimateStrength,
+                DesignUltimateStrength / memberUltimateStrength,
                 1d
-            }.Min();
-            double Kappa = new[]
+            };
+
+            if (majorEdgeDistance.HasValue)
             {
-                2.8d * minorEdgeDistance / HoleDiameter - 1.7d,
-                1.4 * minorSpacing / HoleDiameter - 1.7,
+                alphaValues.Add(majorEdgeDistance.Value / (3 * HoleDiameter));
+            }
+            if (majorSpacing.HasValue)
+            {
+                alphaValues.Add(majorSpacing.Value / (3 * HoleDiameter) - 0.25);
+            }
+
+            double Alpha = alphaValues.Min();
+
+            List<double> kappaValues = new List<double>()
+            {
                 2.5d
-            }.Min();
+            };
+
+            if (minorEdgeDistance.HasValue)
+            {
+                kappaValues.Add(2.8d * minorEdgeDistance.Value / HoleDiameter - 1.7d);
+            }
+            if (minorSpacing.HasValue)
+            {
+                kappaValues.Add(1.4 * minorSpacing.Value / HoleDiameter - 1.7);
+            }
+
+            double Kappa = kappaValues.Min();
+
             return Kappa * Alpha * memberUltimateStrength * Diameter * memberThickness / PartialFactorResistanceBolt;
         }
     }

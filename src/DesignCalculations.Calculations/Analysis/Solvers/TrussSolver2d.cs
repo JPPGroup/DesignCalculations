@@ -21,8 +21,8 @@ namespace Jpp.DesignCalculations.Calculations.Analysis.Solvers
             Supports = new List<Support>();
             Loads = new List<PointLoad>();
         }
-
-        public override void Run(CalculationContext context)
+        
+        public override void ContextualRunInit(CalculationContext context)
         {
             IEnumerable<Point3d> joints = BuildJointList();
             Matrix<double> jointStructure = BuildJointStructure(joints);
@@ -34,6 +34,11 @@ namespace Jpp.DesignCalculations.Calculations.Analysis.Solvers
             Matrix<double> stiffnessMatrixStructure = BuildStiffnessMatrix(joints, memberStructure, jointStructure, coordinateStructure);
             Vector<double> displacements = stiffnessMatrixStructure.Solve(loadStructure);
 
+            throw new NotImplementedException();
+        }
+
+        public override void RunCombination(int combinationIndex, Combination combination, CalculationContext context)
+        {
             throw new NotImplementedException();
         }
 

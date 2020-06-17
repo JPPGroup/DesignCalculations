@@ -6,8 +6,11 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
     {
         // Frd
         public double ShearResistance { get; private set; }
-        public double Member1BearingResistance { get; private set; }
-        public double Member2BearingResistance { get; private set; }
+        public double Member1MajorBearingResistance { get; private set; }
+        public double Member2MajorBearingResistance { get; private set; }
+
+        public double Member1MinorBearingResistance { get; private set; }
+        public double Member2MinorBearingResistance { get; private set; }
 
         private List<BoltRow> _rows;
 
@@ -16,18 +19,15 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
             _rows = new List<BoltRow>();
         }
 
-        public override void Run()
+        public override void RunBody(OutputBuilder builder)
         {
-            ResetCalculation();
-            VerifyInputs();
-
             ShearResistance = 0;
-            Member1BearingResistance = 0;
-            Member2BearingResistance = 0;
+            Member1MajorBearingResistance = 0;
+            Member2MajorBearingResistance = 0;
             foreach (BoltRow boltRow in _rows)
             {
                 ShearResistance += boltRow.ShearResistance;
-                Member2BearingResistance += boltRow.Member2BearingResistance;
+                Member2MajorBearingResistance += boltRow.Member2MajorBearingResistance;
             }
 
             Calculated = true;

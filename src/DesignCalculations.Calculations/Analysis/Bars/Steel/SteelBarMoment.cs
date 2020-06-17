@@ -1,4 +1,5 @@
 ﻿using System;
+using Jpp.DesignCalculations.Calculations.DataTypes;
 
 namespace Jpp.DesignCalculations.Calculations.Analysis.Bars.Steel
 {
@@ -7,7 +8,7 @@ namespace Jpp.DesignCalculations.Calculations.Analysis.Bars.Steel
         public int SectionClassification { get; private set; }
         public double FactorSafety { get; set; } = 1;
 
-        public override void Run(CalculationContext context)
+        public override void ContextualRunInit(CalculationContext context)
         {
             MajorUsage = new double[context.Combinations.Count][];
             MinorUsage = new double[context.Combinations.Count][];
@@ -34,18 +35,18 @@ namespace Jpp.DesignCalculations.Calculations.Analysis.Bars.Steel
                 case 4:
                     throw new NotImplementedException();
             }
+        }
 
-            for (int combinationIndex = 0; combinationIndex < context.Combinations.Count; combinationIndex++)
+        public override void RunCombination(int combinationIndex, Combination combination, CalculationContext context)
+        {
+            // TODO: Consider the effects of shear.
+            MajorUsage[combinationIndex] = new double[context.NumberBarSegments + 1];
+            MinorUsage[combinationIndex] = new double[context.NumberBarSegments + 1];
+
+            for (int i = 0; i <= context.NumberBarSegments; i++)
             {
-                // TODO: Consider the effects of shear.
-                MajorUsage[combinationIndex] = new double[context.NumberBarSegments + 1];
-                MinorUsage[combinationIndex] = new double[context.NumberBarSegments + 1];
-
-                for (int i = 0; i <= context.NumberBarSegments; i++)
-                {
-                    MajorUsage[combinationIndex][i] = MajorMoment[combinationIndex][i] / MajorMomentResistance;
-                    MinorUsage[combinationIndex][i] = MinorMoment[combinationIndex][i] / MinorMomentResistance;
-                }
+                MajorUsage[combinationIndex][i] = MajorMoment[combinationIndex][i] / MajorMomentResistance;
+                MinorUsage[combinationIndex][i] = MinorMoment[combinationIndex][i] / MinorMomentResistance;
             }
         }
     }

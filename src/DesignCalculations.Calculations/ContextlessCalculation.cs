@@ -8,6 +8,13 @@
         /// <summary>
         /// Call to run calculation and set outputs
         /// </summary>
-        public abstract void Run();
+        public void Run(OutputBuilder builder)
+        {
+            RunBegin(builder);
+            RunBody(builder);
+            RunEnd(builder);
+        }
+
+        public abstract void RunBody(OutputBuilder builder);
     }
 }

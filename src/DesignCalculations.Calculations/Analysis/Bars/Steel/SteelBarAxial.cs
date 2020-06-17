@@ -1,4 +1,5 @@
 ﻿using System;
+using Jpp.DesignCalculations.Calculations.DataTypes;
 
 namespace Jpp.DesignCalculations.Calculations.Analysis.Bars.Steel
 {
@@ -10,7 +11,7 @@ namespace Jpp.DesignCalculations.Calculations.Analysis.Bars.Steel
 
         public double FactorSafety { get; set; } = 1;
 
-        public override void Run(CalculationContext context)
+        public override void ContextualRunInit(CalculationContext context)
         {
             Usage = new double[context.Combinations.Count][];
 
@@ -28,20 +29,20 @@ namespace Jpp.DesignCalculations.Calculations.Analysis.Bars.Steel
             {
                 throw new NotImplementedException();
             }
+        }
 
-            for (int combinationIndex = 0; combinationIndex < context.Combinations.Count; combinationIndex++)
+        public override void RunCombination(int combinationIndex, Combination combination, CalculationContext context)
+        {
+            Usage[combinationIndex] = new double[context.NumberBarSegments + 1];
+            for (int i = 0; i <= context.NumberBarSegments; i++)
             {
-                Usage[combinationIndex] = new double[context.NumberBarSegments + 1];
-                for (int i = 0; i <= context.NumberBarSegments; i++)
+                if (Axial[combinationIndex][i] > 0)
                 {
-                    if (Axial[combinationIndex][i] > 0)
-                    {
-                        Usage[combinationIndex][i] = Axial[combinationIndex][i] / CompressionResistance;
-                    }
-                    else
-                    {
-                        Usage[combinationIndex][i] = Axial[combinationIndex][i] / TensionResistance;
-                    }
+                    Usage[combinationIndex][i] = Axial[combinationIndex][i] / CompressionResistance;
+                }
+                else
+                {
+                    Usage[combinationIndex][i] = Axial[combinationIndex][i] / TensionResistance;
                 }
             }
         }

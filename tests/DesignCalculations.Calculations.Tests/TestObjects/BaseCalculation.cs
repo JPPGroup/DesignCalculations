@@ -10,7 +10,7 @@ namespace Jpp.DesignCalculations.Calculations.Tests.TestObjects
         [Output("Test Output")]
         public bool? TestOutput { get; set; }
 
-        public override void Run()
+        public override void RunBody(OutputBuilder builder)
         {
             TestOutput = true;
             Calculated = true;

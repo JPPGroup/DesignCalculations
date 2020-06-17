@@ -20,10 +20,13 @@ namespace Jpp.DesignCalculations.Calculations
         /// </summary>
         public int NumberBarSegments { get; set; } = 10;
 
+        public OutputBuilder Output { get; private set; }
+
         public CalculationContext()
         {
             LoadCases = new List<LoadCase>();
             Combinations = new List<Combination>();
+            Output = new OutputBuilder();
         }
     }
 }

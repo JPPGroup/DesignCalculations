@@ -11,9 +11,19 @@ namespace Jpp.DesignCalculations.Calculations
     public abstract class Calculation
     {
         /// <summary>
+        /// Guid uniquely identifying this calculation instance
+        /// </summary>
+        public Guid Id { get; private set; } = Guid.NewGuid();
+
+        /// <summary>
         /// Human readable calculation name
         /// </summary>
         public string CalculationName { get; protected set; }
+
+        /// <summary>
+        /// String referring to the name of the resource file for the output
+        /// </summary>
+        public string TemplateName { get; protected set; }
 
         /// <summary>
         /// Human readable description
@@ -61,6 +71,19 @@ namespace Jpp.DesignCalculations.Calculations
                         throw new ArgumentNullException(inputAttribute.FriendlyName, "Missing value");
                 }
             }
+        }
+
+        protected virtual void RunBegin(OutputBuilder builder)
+        {
+            builder.BeginCalculation(this);
+            ResetCalculation();
+            VerifyInputs();
+        }
+        
+        protected virtual void RunEnd(OutputBuilder builder)
+        {
+            Calculated = true;
+            builder.EndCalculation();
         }
     }
 }

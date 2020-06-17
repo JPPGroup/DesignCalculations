@@ -6,10 +6,10 @@ namespace Jpp.DesignCalculations.Calculations.Tests.DataTypes.Connections
     [TestFixture]
     class BoltTests
     {
-        [TestCase(20, 22, 0.245, 10, 410, 40, 30, 0, 0, 0, 0, 70, 140, 94.08)] //SCI P358, pg 38
+        [TestCase(0.020, 0.022, 0.000245, 0.010, 410000, 0.040, 0.030, 0.0131, 410000, 0.09, null, 0.070, 0.140, 94.08)] //SCI P358, pg 42 Beam 1 //SCI P358, pg 38
         public void CalculateShearResistance(double Diameter, double HoleDiameter, double TensileStressArea, double Member1Thickness,
-            double Member1Ultimate, double Member1MajorEdgeDistance, double Member1MinorEdgeDistance, double Member2Thickness,
-            double Member2Ultimate, double Member2MajorEdgeDistance, double Member2MinorEdgeDistance, double MajorSpacing, double MinorSpacing, double Result)
+            double Member1Ultimate, double? Member1MajorEdgeDistance, double? Member1MinorEdgeDistance, double Member2Thickness,
+            double Member2Ultimate, double? Member2MajorEdgeDistance, double? Member2MinorEdgeDistance, double? MajorSpacing, double? MinorSpacing, double Result)
         {
             Bolt bolt = new Bolt();
             bolt.Diameter = Diameter;
@@ -26,7 +26,7 @@ namespace Jpp.DesignCalculations.Calculations.Tests.DataTypes.Connections
             bolt.MajorSpacing = MajorSpacing;
             bolt.MinorSpacing = MinorSpacing;
 
-            bolt.Run();
+            bolt.Run(new OutputBuilder());
             Assert.IsTrue(bolt.Calculated, "Calculation failed to complete successfully");
 
             Assert.AreEqual(Result, bolt.ShearResistance, 0.1);
@@ -36,8 +36,8 @@ namespace Jpp.DesignCalculations.Calculations.Tests.DataTypes.Connections
         [TestCase(0.020, 0.022, 0.000245, 0.010, 410000, 0.040, 0.030, 0.0131, 410000, 0.09, null, 0.070, 0.140, 84.2)] //SCI P358, pg 42 Beam 1
         [TestCase(0.020, 0.022, 0.000245, 0.012, 410000, 0.040, 0.030, 0.0131, 410000, 0.09, null, 0.070, 0.140, 101)] //SCI P358, pg 42 Beam 2
         public void CalculateMember1BearingResistances(double Diameter, double HoleDiameter, double TensileStressArea, double Member1Thickness,
-            double Member1Ultimate, double Member1MajorEdgeDistance, double Member1MinorEdgeDistance, double Member2Thickness,
-            double Member2Ultimate, double Member2MajorEdgeDistance, double Member2MinorEdgeDistance, double MajorSpacing, double MinorSpacing, double Result)
+            double Member1Ultimate, double? Member1MajorEdgeDistance, double? Member1MinorEdgeDistance, double Member2Thickness,
+            double Member2Ultimate, double? Member2MajorEdgeDistance, double? Member2MinorEdgeDistance, double? MajorSpacing, double? MinorSpacing, double Result)
         {
             Bolt bolt = new Bolt();
             bolt.Diameter = Diameter;
@@ -54,17 +54,18 @@ namespace Jpp.DesignCalculations.Calculations.Tests.DataTypes.Connections
             bolt.MajorSpacing = MajorSpacing;
             bolt.MinorSpacing = MinorSpacing;
 
-            bolt.Run();
+            bolt.Run(new OutputBuilder());
             Assert.IsTrue(bolt.Calculated, "Calculation failed to complete successfully");
 
+            // TODO: Change delta to a percentage? 1%?
             Assert.AreEqual(Result, bolt.Member1MajorBearingResistance, 0.1);
         }
 
         [TestCase(0.020, 0.022, 0.000245, 0.010, 410000, 0.040, 0.030, 0.0131, 410000, 0.09, null, 0.070, 0.140, 174)] //SCI P358, pg 42 Beam 1
         [TestCase(0.020, 0.022, 0.000245, 0.012, 410000, 0.040, 0.030, 0.0131, 410000, 0.09, null, 0.070, 0.140, 174)] //SCI P358, pg 42 Beam 2
         public void CalculateMember2BearingResistances(double Diameter, double HoleDiameter, double TensileStressArea, double Member1Thickness,
-            double Member1Ultimate, double Member1MajorEdgeDistance, double Member1MinorEdgeDistance, double Member2Thickness,
-            double Member2Ultimate, double Member2MajorEdgeDistance, double Member2MinorEdgeDistance, double MajorSpacing, double MinorSpacing, double Result)
+            double Member1Ultimate, double? Member1MajorEdgeDistance, double? Member1MinorEdgeDistance, double Member2Thickness,
+            double Member2Ultimate, double? Member2MajorEdgeDistance, double? Member2MinorEdgeDistance, double? MajorSpacing, double? MinorSpacing, double Result)
         {
             Bolt bolt = new Bolt();
             bolt.Diameter = Diameter;
@@ -81,10 +82,11 @@ namespace Jpp.DesignCalculations.Calculations.Tests.DataTypes.Connections
             bolt.MajorSpacing = MajorSpacing;
             bolt.MinorSpacing = MinorSpacing;
 
-            bolt.Run();
+            bolt.Run(new OutputBuilder());
             Assert.IsTrue(bolt.Calculated, "Calculation failed to complete successfully");
 
-            Assert.AreEqual(Result, bolt.Member2MajorBearingResistance, 0.1);
+            // TODO: Change delta to a percentage? 1%?
+            Assert.AreEqual(Result, bolt.Member2MajorBearingResistance, 1);
         }
 
         [Test]
