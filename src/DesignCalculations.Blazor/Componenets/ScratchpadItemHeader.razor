@@ -1,0 +1,7 @@
+﻿<h3 class="scratchpad-title">@Item.Created.ToString("dddd MMMMM d")</h3>
+<h4 class="scratchpad-subtitle">@Item.Created.ToString("hh:mm")</h4>
+
+@code {
+    [Parameter]
+    public ScratchpadItem Item { get; set; }
+}

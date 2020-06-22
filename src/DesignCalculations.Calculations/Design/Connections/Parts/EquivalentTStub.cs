@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using Jpp.DesignCalculations.Calculations.Attributes;
 
 namespace Jpp.DesignCalculations.Calculations.Design.Connections.Parts
 {
+    [HiddenCalculation]
     public class EquivalentTStub : ContextlessCalculation
     {
         public double EffectiveLength1 { get; set; }

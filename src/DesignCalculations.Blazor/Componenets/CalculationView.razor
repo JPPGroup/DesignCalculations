@@ -1,0 +1,68 @@
+﻿@using Jpp.DesignCalculations.Calculations
+    <Card>
+        <h3>@_model.Name</h3>
+        <p>@_model.Description</p>
+        <CombinationSwitcher Model="@_model" />
+
+        <br/>
+
+        <AdaptiveStackPanel>            
+                <div class="calculation-inputpropertycontainer">
+                    <h4 class="calculation-propertycontainer-header">Inputs</h4>
+                    @foreach (CalculationPropertyGroup inputGroup in _model.InputGroups.Values)
+                    {
+                        <h5 class="calculation-propertycontainer-header">@inputGroup.Name</h5>
+                        @foreach (CalculationProperty input in inputGroup.Properties)
+                        {
+                            <PropertyBinding Property="@input" Model="@_model" Output="false" />
+                        }
+                    }
+                    @{
+                        if (Calculation is ContextualCalculation contextual)
+                        {
+                            foreach (ContextlessCalculation subCalculation in contextual.ContextlessSubCalculations)
+                            {
+                                <SubCalcProperties Calculation="@subCalculation" />
+                            }
+                        } }
+                </div>
+
+                <div class="calculation-outputpropertycontainer">
+                    <h4 class="calculation-propertycontainer-header">Outputs</h4>
+                    <button @onclick="Run">Calculate</button>
+                    @foreach (CalculationPropertyGroup outputGroup in _model.OutputGroups.Values)
+                    {
+                        <h5 class="calculation-propertycontainer-header">@outputGroup.Name</h5>
+                        @foreach (CalculationProperty output in outputGroup.Properties)
+                        {
+                            <PropertyBinding Property="@output" Model="@_model" Output="true" />
+                        }
+                    }
+                </div>            
+        </AdaptiveStackPanel>
+    </Card>
+
+@code {
+    [Parameter] public Calculation Calculation { get; set; }
+    
+    private CalculationViewModel _model;
+
+    protected override void OnInitialized()
+    {
+        _model = new CalculationViewModel(Calculation);
+        _model.PropertyChanged += (sender, args) => { StateHasChanged(); };
+    }
+
+    public void Run()
+    {
+        if (Calculation is ContextualCalculation)
+        {
+            (Calculation as ContextualCalculation).Run(_model.Context);
+        }
+        else
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+}

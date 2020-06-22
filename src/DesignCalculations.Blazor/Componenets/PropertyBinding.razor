@@ -1,0 +1,158 @@
+﻿@using Jpp.DesignCalculations.Calculations
+@using Jpp.DesignCalculations.Calculations.DataTypes
+@using Jpp.DesignCalculations.Calculations.DataTypes.Connections
+
+<div class="calculation-propertycontainer-propertyname">@Property.Name</div>
+
+@switch (_dataType)
+{
+    case DataType.Numeric:
+        <div class="calculation-propertycontainer-input">
+            <input type="number" class="form-control" value="@Property.Property.GetValue(Calculation)" @onchange="@((ChangeEventArgs e) => SetValue(e.Value.ToString()))" disabled="@Output" />
+        </div>
+        <div class="calculation-propertycontainer-units">TBC</div>
+        break;
+
+    case DataType.CombinationNumeric:
+        <div class="calculation-propertycontainer-input">
+            <input type="number" class="form-control" value="@GetCombinationValue()" @onchange="@SetCombinationValue" disabled="@Output" />
+        </div>
+        <div class="calculation-propertycontainer-units">TBC</div>
+        break;
+
+    case DataType.BoltRows:
+        <div class="calculation-propertycontainer-input-unitless">
+            <p>Bolt rows not implemented</p>
+        </div>
+        break;
+
+    case DataType.CrossSection:
+        <div class="calculation-propertycontainer-input-unitless">
+            <SectionPicker Section="@((CrossSection)Property.Property.GetValue(Calculation))" SectionChanged="@SetCrossSection" />
+        </div>
+        break;
+
+    case DataType.ColumnRotation:
+        <div class="calculation-propertycontainer-input-unitless">
+            <select @bind="ColumnRotationValue">
+                @foreach (var option in Enum.GetValues(typeof(ColumnRotation)))
+                {
+                    <option value="@option">@option</option>
+                }
+            </select>
+        </div>
+        break;
+
+    case DataType.Unknown:
+    default:
+        <div class="calculation-propertycontainer-input-unitless">
+            <p>Unknown datatype.</p>
+        </div>
+        break;
+}
+
+@code {
+    [Parameter] public CalculationProperty Property { get; set; }
+    [Parameter] public CalculationViewModel Model { get; set; }
+    public Calculation Calculation
+    {
+        get
+        {
+            return Model.Calcuation;
+        }
+    }
+
+    [Parameter]
+    public bool Output { get; set; } = false;
+
+    private DataType _dataType;
+
+    private object PropertyValue
+    {
+        get { return Property.Property.GetValue(Calculation); }
+        set { SetValue(value); }
+    }
+
+    private ColumnRotation ColumnRotationValue
+    {
+        get { return (ColumnRotation)Property.Property.GetValue(Calculation); }
+        set { SetValue(value); }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _dataType = DataType.Unknown;
+        if (Property.Property.PropertyType == typeof(double) || Property.Property.PropertyType == typeof(double?))
+        {
+            _dataType = DataType.Numeric;
+        }
+        if (Property.Property.PropertyType == typeof(List<BoltRow>))
+        {
+            _dataType = DataType.BoltRows;
+        }
+        if (Property.Property.PropertyType == typeof(CrossSection))
+        {
+            _dataType = DataType.CrossSection;
+        }
+        if (Property.Property.PropertyType == typeof(ColumnRotation))
+        {
+            _dataType = DataType.ColumnRotation;
+        }
+        if (Property.Property.PropertyType == typeof(List<double>))
+        {
+            _dataType = DataType.CombinationNumeric;
+        }
+    }
+
+    private enum DataType
+    {
+        Unknown,
+        BoltRows,
+        Numeric,
+        CrossSection,
+        ColumnRotation,
+        CombinationNumeric,
+        Text
+    }
+
+    private void SetValue(String value)
+    {
+        // TODO: Dont bother adding event in the first place??
+
+        if (!Output)
+        {
+            switch (_dataType)
+            {
+                case DataType.Numeric:
+                    Property.Property.SetValue(Calculation, Double.Parse(value));
+                    break;
+
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
+    }
+
+    private void SetValue(object value)
+    {
+        Property.Property.SetValue(Calculation, value);
+    }
+
+    private void SetCrossSection(CrossSection s)
+    {
+        SetValue(s);
+    }
+
+    private double GetCombinationValue()
+    {
+        List<double> values = Property.Property.GetValue(Calculation) as List<double>;
+        return values[Model.CurrentCombination];
+    }
+
+    private void SetCombinationValue(ChangeEventArgs e)
+    {
+        List<double> values = Property.Property.GetValue(Calculation) as List<double>;
+        values[Model.CurrentCombination] = Double.Parse(e.Value as string);
+    }
+}

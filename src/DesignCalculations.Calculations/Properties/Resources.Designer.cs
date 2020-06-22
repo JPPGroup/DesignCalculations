@@ -142,6 +142,195 @@ namespace Jpp.DesignCalculations.Calculations.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bolts that form the connection.
+        /// </summary>
+        internal static string EndPlateConnection_BoltRows_Description {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_BoltRows_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection Elements.
+        /// </summary>
+        internal static string EndPlateConnection_BoltRows_Group {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_BoltRows_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bolts.
+        /// </summary>
+        internal static string EndPlateConnection_BoltRows_Name {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_BoltRows_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steel End Plate Connection.
+        /// </summary>
+        internal static string EndPlateConnection_CalculationName {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_CalculationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BS EN 1993-1-8.
+        /// </summary>
+        internal static string EndPlateConnection_Code {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eurocode calculation for a steel end plate connection.
+        /// </summary>
+        internal static string EndPlateConnection_Description {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cross section of the supported member.
+        /// </summary>
+        internal static string EndPlateConnection_IncomingMemberSection_Description {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_IncomingMemberSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported Member.
+        /// </summary>
+        internal static string EndPlateConnection_IncomingMemberSection_Group {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_IncomingMemberSection_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section.
+        /// </summary>
+        internal static string EndPlateConnection_IncomingMemberSection_Name {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_IncomingMemberSection_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotation in degrees clockwise positive. A value of 0 represents a connection parallel to the member flange.
+        /// </summary>
+        internal static string EndPlateConnection_SupportingMemberRotation_Description {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_SupportingMemberRotation_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported Member.
+        /// </summary>
+        internal static string EndPlateConnection_SupportingMemberRotation_Group {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_SupportingMemberRotation_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotation.
+        /// </summary>
+        internal static string EndPlateConnection_SupportingMemberRotation_Name {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_SupportingMemberRotation_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cross section of the supporting member.
+        /// </summary>
+        internal static string EndPlateConnection_SupportingMemberSection_Description {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_SupportingMemberSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supporting Member.
+        /// </summary>
+        internal static string EndPlateConnection_SupportingMemberSection_Group {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_SupportingMemberSection_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section.
+        /// </summary>
+        internal static string EndPlateConnection_SupportingMemberSection_Name {
+            get {
+                return ResourceManager.GetString("EndPlateConnection_SupportingMemberSection_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fin Plate.
+        /// </summary>
+        internal static string FinPlate_CalculationName {
+            get {
+                return ResourceManager.GetString("FinPlate_CalculationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BS EN 1993-1-8.
+        /// </summary>
+        internal static string FinPlate_Code {
+            get {
+                return ResourceManager.GetString("FinPlate_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fin Plate.
+        /// </summary>
+        internal static string FinPlate_Description {
+            get {
+                return ResourceManager.GetString("FinPlate_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steel Fin Plate Connection.
+        /// </summary>
+        internal static string FinPlateConnection_CalculationName {
+            get {
+                return ResourceManager.GetString("FinPlateConnection_CalculationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BS EN 1993-1-8.
+        /// </summary>
+        internal static string FinPlateConnection_Code {
+            get {
+                return ResourceManager.GetString("FinPlateConnection_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eurocode calculation for a steel fin plate connection.
+        /// </summary>
+        internal static string FinPlateConnection_Description {
+            get {
+                return ResourceManager.GetString("FinPlateConnection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NHBC Foundation Depth 2020.
         /// </summary>
         internal static string NHBC2020FoundationDepth_CalculationName {
@@ -498,6 +687,208 @@ namespace Jpp.DesignCalculations.Calculations.Properties {
         internal static string NHBC2020FoundationDepth_TopOfConcreteLevel_Name {
             get {
                 return ResourceManager.GetString("NHBC2020FoundationDepth_TopOfConcreteLevel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height of plate.
+        /// </summary>
+        internal static string Plate_MajorDimension_Description {
+            get {
+                return ResourceManager.GetString("Plate_MajorDimension_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geometry.
+        /// </summary>
+        internal static string Plate_MajorDimension_Group {
+            get {
+                return ResourceManager.GetString("Plate_MajorDimension_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        internal static string Plate_MajorDimension_Name {
+            get {
+                return ResourceManager.GetString("Plate_MajorDimension_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width of plate.
+        /// </summary>
+        internal static string Plate_MinorDimension_Description {
+            get {
+                return ResourceManager.GetString("Plate_MinorDimension_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geometry.
+        /// </summary>
+        internal static string Plate_MinorDimension_Group {
+            get {
+                return ResourceManager.GetString("Plate_MinorDimension_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        internal static string Plate_MinorDimension_Name {
+            get {
+                return ResourceManager.GetString("Plate_MinorDimension_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thickness of plate.
+        /// </summary>
+        internal static string Plate_Thickness_Description {
+            get {
+                return ResourceManager.GetString("Plate_Thickness_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geometry.
+        /// </summary>
+        internal static string Plate_Thickness_Group {
+            get {
+                return ResourceManager.GetString("Plate_Thickness_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thickness.
+        /// </summary>
+        internal static string Plate_Thickness_Name {
+            get {
+                return ResourceManager.GetString("Plate_Thickness_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shear Force about the major axis.
+        /// </summary>
+        internal static string SteelConnection_MajorShearForce_Description {
+            get {
+                return ResourceManager.GetString("SteelConnection_MajorShearForce_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design Loads.
+        /// </summary>
+        internal static string SteelConnection_MajorShearForce_Group {
+            get {
+                return ResourceManager.GetString("SteelConnection_MajorShearForce_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major Shear Force.
+        /// </summary>
+        internal static string SteelConnection_MajorShearForce_Name {
+            get {
+                return ResourceManager.GetString("SteelConnection_MajorShearForce_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shear Force about the minoraxis.
+        /// </summary>
+        internal static string SteelConnection_MinorShearForce_Description {
+            get {
+                return ResourceManager.GetString("SteelConnection_MinorShearForce_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design Loads.
+        /// </summary>
+        internal static string SteelConnection_MinorShearForce_Group {
+            get {
+                return ResourceManager.GetString("SteelConnection_MinorShearForce_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor Shear Force.
+        /// </summary>
+        internal static string SteelConnection_MinorShearForce_Name {
+            get {
+                return ResourceManager.GetString("SteelConnection_MinorShearForce_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tying Force the connection is to be designed in isolation for.
+        /// </summary>
+        internal static string SteelConnection_TyingForce_Description {
+            get {
+                return ResourceManager.GetString("SteelConnection_TyingForce_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design Loads.
+        /// </summary>
+        internal static string SteelConnection_TyingForce_Group {
+            get {
+                return ResourceManager.GetString("SteelConnection_TyingForce_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tying Force.
+        /// </summary>
+        internal static string SteelConnection_TyingForce_Name {
+            get {
+                return ResourceManager.GetString("SteelConnection_TyingForce_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilisation of tying force resistance as a percentage.
+        /// </summary>
+        internal static string SteelConnection_TyingUsage_Description {
+            get {
+                return ResourceManager.GetString("SteelConnection_TyingUsage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tying.
+        /// </summary>
+        internal static string SteelConnection_TyingUsage_Group {
+            get {
+                return ResourceManager.GetString("SteelConnection_TyingUsage_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tying Utilisation.
+        /// </summary>
+        internal static string SteelConnection_TyingUsage_Name {
+            get {
+                return ResourceManager.GetString("SteelConnection_TyingUsage_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section,,Mass,Depth,Width,Thickness,,Root,Depth,Ratios for,,Dimensions for,,,Surface,,,,,,,,,,,,,,
+        ///Designation,,per,of,of,,,Radius,between,Local Buckling,,Detailing,,,Area,,Second Moment,,Radius of,,Elastic,,Plastic,,Buckling,Torsional,Warping,Torsional,Area
+        ///,,Metre,Section,Section,Web,Flange,,Fillets,Web,Flange,End,Notch,,Per,Per,of Area,,Gyration,,Modulus,,Modulus,,Parameter,Index,Constant,Constant,of
+        ///,,,,,,,,,,,Clearance,,,Metre,Tonne,y-y,z-z,y-y,z-z,y-y,z-z,y-y,z-z,,,,,Section
+        ///1,2,3,4,5,6,7,8,9,10,1 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string UKB {
+            get {
+                return ResourceManager.GetString("UKB", resourceCulture);
             }
         }
     }

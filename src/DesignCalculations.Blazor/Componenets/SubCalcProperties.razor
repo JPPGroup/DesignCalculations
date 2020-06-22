@@ -1,0 +1,30 @@
+﻿@using Jpp.DesignCalculations.Calculations
+@foreach (CalculationPropertyGroup inputGroup in _model.InputGroups.Values)
+{
+    <h5 class="calculation-propertycontainer-header">@Calculation.CalculationName - @inputGroup.Name</h5>
+    @foreach (CalculationProperty input in inputGroup.Properties)
+    {
+        <PropertyBinding Property="@input" Model="@_model" Output="false" />
+    }
+}
+@{
+    if (Calculation is ContextualCalculation contextual)
+    {
+        foreach (ContextlessCalculation subCalculation in contextual.ContextlessSubCalculations)
+        {
+            <CalculationView Calculation="@subCalculation" />
+        }
+    }
+}
+
+@code {
+    [Parameter] public Calculation Calculation { get; set; }
+
+    private CalculationViewModel _model;
+
+    protected override void OnInitialized()
+    {
+        _model = new CalculationViewModel(Calculation);
+        _model.PropertyChanged += (sender, args) => { StateHasChanged(); };
+    }
+}

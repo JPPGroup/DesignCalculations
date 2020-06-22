@@ -1,7 +1,9 @@
 ﻿using System;
+using Jpp.DesignCalculations.Calculations.Attributes;
 
 namespace Jpp.DesignCalculations.Calculations.Analysis
 {
+    [HiddenCalculation]
     class LocalGlobalLoadConverter : ContextlessCalculation
     {
         public double Bearing { get; set; } //Clockwise roation of axis 

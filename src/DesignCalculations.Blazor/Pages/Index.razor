@@ -1,0 +1,24 @@
+﻿@page "/"
+@using Jpp.DesignCalculations.Calculations
+@inject CalculationBrowser Browser;
+@inject CalculationSessionManager Manager;
+
+<h2>Available Calculations</h2>
+
+<TreeView Items="@Browser.Root.Children" />
+<ScratchpadView />
+<div>
+    @foreach (Calculation calc in Manager.ActiveCalculations)
+    {
+        <CalculationView Calculation="@calc" />
+    }
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        Manager.ActiveCalculations.CollectionChanged += (sender, args) => StateHasChanged();
+    }
+
+}

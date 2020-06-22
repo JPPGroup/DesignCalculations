@@ -1,8 +1,10 @@
 ﻿using System;
+using Jpp.DesignCalculations.Calculations.Attributes;
 using Jpp.DesignCalculations.Calculations.DataTypes;
 
 namespace Jpp.DesignCalculations.Calculations.Design.Connections.Parts
 {
+    [HiddenCalculation]
     class SupportingColumn : ContextualCalculation
     {
         public double Orientation { get; set; }

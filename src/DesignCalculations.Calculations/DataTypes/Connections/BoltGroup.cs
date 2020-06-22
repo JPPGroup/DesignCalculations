@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using Jpp.DesignCalculations.Calculations.Attributes;
 
 namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
 {
+    [HiddenCalculation]
     public class BoltGroup : ContextlessCalculation
     {
         // Frd

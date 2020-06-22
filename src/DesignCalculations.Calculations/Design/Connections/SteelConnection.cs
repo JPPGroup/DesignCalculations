@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Jpp.DesignCalculations.Calculations.Analysis;
+using Jpp.DesignCalculations.Calculations.Attributes;
 using Jpp.DesignCalculations.Calculations.DataTypes;
 
 namespace Jpp.DesignCalculations.Calculations.Design.Connections
 {
     public abstract class SteelConnection : ContextualCalculation
     {
-        public CrossSection SupportingCrossSection { get; set; }
-        public Material SupportingMaterial { get; set; }
-
-        public CrossSection IncomingCrossSection { get; set; }
-        public Material IncomingMaterial { get; set; }
         public double AngleOffHorizontal { get; set; }
         public double Bearing { get; set; }
 
 
+        [Input("SteelConnection_MajorShearForce_Name", "SteelConnection_MajorShearForce_Description", "SteelConnection_MajorShearForce_Group")]
         public List<double> MajorShearForce { get; set; }
+        [Input("SteelConnection_MinorShearForce_Name", "SteelConnection_MinorShearForce_Description", "SteelConnection_MinorShearForce_Group")]
         public List<double> MinorShearForce { get; set; }
         public List<double> MajorMoment { get; set; }
         public List<double> MinorMoment { get; set; }
         public List<double> AxialForce { get; set; }
+        [Input("SteelConnection_TyingForce_Name", "SteelConnection_TyingForce_Description", "SteelConnection_TyingForce_Group")]
         public double TyingForce { get; set; }
 
         List<double> localMajorShearForce { get; set; }
@@ -37,7 +35,20 @@ namespace Jpp.DesignCalculations.Calculations.Design.Connections
         public List<double> OverallShearUsage { get; private set; }
         public List<double> MajorMomentUsage { get; private set; }
         public List<double> MinorMomentUsage { get; private set; }
+        [Output("SteelConnection_TyingUsage_Name", "SteelConnection_TyingUsage_Description", "SteelConnection_TyingUsage_Group")]
         public double TyingUsage { get; protected set; }
+
+        public SteelConnection() : base()
+        {
+            MajorShearForce = new List<double>() { 0 };
+            MinorShearForce = new List<double>() { 0 };
+
+            MajorShearUsage = new List<double>() { 0 };
+            MinorShearUsage = new List<double>() { 0 };
+            MajorMomentUsage = new List<double>() { 0 };
+            MinorMomentUsage = new List<double>() { 0 };
+            OverallShearUsage = new List<double>() { 0 };
+        }
 
         public override void ContextualRunInit(CalculationContext context)
         {

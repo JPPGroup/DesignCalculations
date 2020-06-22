@@ -1,0 +1,15 @@
+﻿@inject Scratchpad Scratchpad;
+<h3>Recent Items</h3>
+
+@foreach (ScratchpadItem item in Scratchpad.Items)
+{
+    <ScratchpadItemHeader Item="@item"/>
+}
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        Scratchpad.Items.CollectionChanged += (o, i) => { StateHasChanged(); };
+    }
+}

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Jpp.DesignCalculations.Calculations.Analysis.Bars;
+using Jpp.DesignCalculations.Calculations.Attributes;
 using Jpp.DesignCalculations.Calculations.DataTypes;
 using MathNet.Numerics.LinearAlgebra;
 
 namespace Jpp.DesignCalculations.Calculations.Analysis.Solvers
 {
+    [HiddenCalculation]
     public class TrussSolver2d : ContextualCalculation
     {
         private const int DEGREES_OF_FREEDOM = 2;

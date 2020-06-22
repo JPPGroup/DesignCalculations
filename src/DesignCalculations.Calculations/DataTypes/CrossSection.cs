@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Jpp.DesignCalculations.Calculations.DataTypes
+﻿namespace Jpp.DesignCalculations.Calculations.DataTypes
 {
     /// <summary>
     /// Class representing a structural cross section
     /// </summary>
     public class CrossSection
     {
+        public string Name { get; set; }
+
         public double MajorPlasticSectionModulus { get; set; }
         public double MajorElasticSectionModulus { get; set; }
 
@@ -21,5 +19,18 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes
         public double Area { get; set; }
 
         public double Height { get; set; }
+
+        public virtual void CopyFrom(CrossSection selectedSection)
+        {
+            Name = selectedSection.Name;
+            Area = selectedSection.Area;
+            MajorElasticSectionModulus = selectedSection.MajorElasticSectionModulus;
+            MajorPlasticSectionModulus = selectedSection.MajorPlasticSectionModulus;
+            MinorElasticSectionModulus = selectedSection.MinorElasticSectionModulus;
+            MinorPlasticSectionModulus = selectedSection.MinorPlasticSectionModulus;
+            MajorSecondMomentOfArea = selectedSection.MajorSecondMomentOfArea;
+            MinorSecondMomentOfArea = selectedSection.MinorSecondMomentOfArea;
+            Height = selectedSection.Height;
+        }
     }
 }

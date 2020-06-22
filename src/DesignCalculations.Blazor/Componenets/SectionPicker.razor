@@ -1,0 +1,41 @@
+﻿@using Jpp.Common.Razor.Services
+@using Jpp.DesignCalculations.Calculations.DataTypes
+@inject ModalService _modalService
+@if (Section == null)
+{
+    <button @onclick="Show">Pick Section</button>
+}
+else
+{
+    <button @onclick="Show">@Section.Name</button>
+}
+
+@code {
+    [Parameter]
+    public CrossSection Section { get; set; }
+
+    [Parameter]
+    public EventCallback<CrossSection> SectionChanged { get; set; }
+
+    public async void Show()
+    {
+        CrossSection pickedSection;
+
+        if (Section != null)
+        {
+            pickedSection = Section;
+        }
+        else
+        {
+            pickedSection = new CrossSection();
+        }
+
+        ModalResult result = await _modalService.ShowAsync("Section", typeof(SectionPickerDialog), new KeyValuePair<string, object>("Section", pickedSection));
+
+        if (result.Success)
+        {
+            Section = result.Results["Section"] as CrossSection;
+            await SectionChanged.InvokeAsync(Section);
+        }
+    }
+}

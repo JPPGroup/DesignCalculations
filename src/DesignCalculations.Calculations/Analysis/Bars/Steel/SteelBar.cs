@@ -1,8 +1,10 @@
 ﻿using System;
+using Jpp.DesignCalculations.Calculations.Attributes;
 using Jpp.DesignCalculations.Calculations.DataTypes;
 
 namespace Jpp.DesignCalculations.Calculations.Analysis.Bars.Steel
 {
+    [HiddenCalculation]
     public class SteelBar : AbstractBar
     {
         public int SectionClassification { get; private set; }

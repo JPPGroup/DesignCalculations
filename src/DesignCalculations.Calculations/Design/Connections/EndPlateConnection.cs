@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Jpp.DesignCalculations.Calculations.Attributes;
 using Jpp.DesignCalculations.Calculations.DataTypes;
 using Jpp.DesignCalculations.Calculations.DataTypes.Connections;
 using Jpp.DesignCalculations.Calculations.Design.Connections.Parts;
+using Jpp.DesignCalculations.Calculations.Properties;
 
 namespace Jpp.DesignCalculations.Calculations.Design.Connections
 {
@@ -10,17 +12,39 @@ namespace Jpp.DesignCalculations.Calculations.Design.Connections
     class EndPlateConnection : SteelConnection
     {
         public Plate IncomingEndPlate { get; set; }
+
+        [Input("EndPlateConnection_BoltRows_Name", "EndPlateConnection_BoltRows_Description", "EndPlateConnection_BoltRows_Group")]
         public List<BoltRow> BoltRows { get; private set; }
+
+        [Input("EndPlateConnection_SupportingMemberSection_Name", "EndPlateConnection_SupportingMemberSection_Description", "EndPlateConnection_SupportingMemberSection_Group")]
+        public CrossSection SupportingMemberSection { get; set; }
+        [Input("EndPlateConnection_SupportingMemberRotation_Name", "EndPlateConnection_SupportingMemberRotation_Description", "EndPlateConnection_SupportingMemberRotation_Group")]
+        public ColumnRotation SupportingMemberRotation { get; set; }
+        [Input("EndPlateConnection_IncomingMemberSection_Name", "EndPlateConnection_IncomingMemberSection_Description", "EndPlateConnection_IncomingMemberSection_Group")]
+        public CrossSection IncomingMemberSection { get; set; }
+
+        private SupportingColumn _supportingColumn;
 
         public EndPlateConnection() : base()
         {
+            CalculationName = Resources.EndPlateConnection_CalculationName;
+            Description = Resources.EndPlateConnection_Description;
+            Code = Resources.EndPlateConnection_Code;
             BoltRows = new List<BoltRow>();
+
+            _supportingColumn = new SupportingColumn();
         }
 
         public override void ContextualRunInit(CalculationContext context)
         {
-            
             base.ContextualRunInit(context);
+            foreach (BoltRow boltRow in BoltRows)
+            {
+                boltRow.Run(context.Output);
+            }
+
+            //Set up supporting member
+            _supportingColumn.Run(context);
         }
 
         public override void RunCombination(int combinationIndex, Combination combination, CalculationContext context)
@@ -36,7 +60,7 @@ namespace Jpp.DesignCalculations.Calculations.Design.Connections
         public override bool CheckDetailRequirements()
         {
             //Verify plate dimensions
-            if (IncomingCrossSection.Height * 0.6 > IncomingEndPlate.MajorDimension)
+            if (IncomingMemberSection.Height * 0.6 > IncomingEndPlate.MajorDimension)
             {
                 return false;
             }

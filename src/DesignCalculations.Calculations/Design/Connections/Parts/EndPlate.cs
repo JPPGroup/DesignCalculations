@@ -13,7 +13,7 @@ namespace Jpp.DesignCalculations.Calculations.Design.Connections.Parts
 
         public double RequiredWeldThroatThickness { get; private set; }
 
-        public override void RunCombination(int combinationIndex, Combination combination, CalculationContext context)
+        public override void RunBody(OutputBuilder builder)
         {
             CalculateRequiredWeld();
         }

@@ -1,0 +1,36 @@
+﻿@using Jpp.DesignCalculations.Calculations
+@inject Scratchpad Scratchpad;
+@inject CalculationSessionManager Manager;
+
+<li>
+    @if (Item is CalculationInfo)
+    {
+        <span class="caret"><a @onclick="Create">@Item.Name</a></span>
+    }
+    else
+    {
+        <span class="caret">@Item.Name</span>
+    }
+    @if (Item.Children.Count > 0)
+    {
+        <ul class="nested">
+            @foreach (BrowserInfo info in Item.Children)
+            {
+                <TreeItem Item="@info" />
+            }
+        </ul>
+    }
+</li>
+
+
+    @code {
+        [Parameter]
+        public BrowserInfo Item { get; set; }
+
+        public void Create()
+        {
+            CalculationInfo cInfo = Item as CalculationInfo;
+            Calculation newCalc = Scratchpad.AddToSession(cInfo);
+            Manager.ActiveCalculations.Add(newCalc);
+        }
+    }

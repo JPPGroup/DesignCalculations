@@ -1,4 +1,5 @@
-﻿using Jpp.DesignCalculations.Calculations.DataTypes;
+﻿using System.Collections.Generic;
+using Jpp.DesignCalculations.Calculations.DataTypes;
 
 namespace Jpp.DesignCalculations.Calculations
 {
@@ -7,12 +8,20 @@ namespace Jpp.DesignCalculations.Calculations
     /// </summary>
     public abstract class ContextualCalculation : Calculation
     {
+        public List<ContextlessCalculation> ContextlessSubCalculations { get; private set; } = new List<ContextlessCalculation>();
+        
         /// <summary>
         /// Call to run calculation and set outputs
         /// </summary>
         public void Run(CalculationContext context)
         {
             RunBegin(context.Output);
+
+            foreach (ContextlessCalculation contextlessSubCalculation in ContextlessSubCalculations)
+            {
+                contextlessSubCalculation.Run(context.Output);
+            }
+            
             ContextualRunInit(context);
 
             int i = 0;
@@ -30,5 +39,9 @@ namespace Jpp.DesignCalculations.Calculations
         }
 
         public abstract void RunCombination(int combinationIndex, Combination combination, CalculationContext context);
+
+        public virtual void SetContextualProperties(int combinationCount)
+        { }
+
     }
 }

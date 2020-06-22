@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
+using Jpp.DesignCalculations.Calculations.Attributes;
 using Jpp.DesignCalculations.Calculations.Design.Connections.Parts;
 
 namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
 {
+    [HiddenCalculation]
     // TODO: Only one outstand row is supported at the moment
     public class BoltRow : ContextlessCalculation
     {
