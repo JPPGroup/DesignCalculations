@@ -8,9 +8,13 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
         public double ShearResistance { get; private set; }
         public double Member1MajorBearingResistance { get; private set; }
         public double Member2MajorBearingResistance { get; private set; }
-
+        
         public double Member1MinorBearingResistance { get; private set; }
         public double Member2MinorBearingResistance { get; private set; }
+
+        public double TensionResistance { get; private set; }
+
+        public Location RowLocation { get; private set; }
 
         private List<BoltRow> _rows;
 
@@ -31,6 +35,15 @@ namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
             }
 
             Calculated = true;
+        }
+
+        public enum Location
+        {
+            TopOutstand,
+            BottomOutstand,
+            Top,
+            Middle,
+            Bottom
         }
     }
 }

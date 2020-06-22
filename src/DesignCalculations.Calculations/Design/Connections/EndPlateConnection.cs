@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using Jpp.DesignCalculations.Calculations.DataTypes;
 using Jpp.DesignCalculations.Calculations.DataTypes.Connections;
 using Jpp.DesignCalculations.Calculations.Design.Connections.Parts;
@@ -10,16 +10,22 @@ namespace Jpp.DesignCalculations.Calculations.Design.Connections
     class EndPlateConnection : SteelConnection
     {
         public Plate IncomingEndPlate { get; set; }
-        public BoltGroup BoltGroup { get; set; }
+        public List<BoltRow> BoltRows { get; private set; }
+
+        public EndPlateConnection() : base()
+        {
+            BoltRows = new List<BoltRow>();
+        }
 
         public override void ContextualRunInit(CalculationContext context)
         {
-            IncomingEndPlate.BoltsThrough = BoltGroup;
+            
             base.ContextualRunInit(context);
         }
 
         public override void RunCombination(int combinationIndex, Combination combination, CalculationContext context)
         {
+            base.RunCombination(combinationIndex, combination, context);
             ShearChecks(combinationIndex, combination);
         }
 
@@ -45,12 +51,25 @@ namespace Jpp.DesignCalculations.Calculations.Design.Connections
             return true;
         }
 
+        
+
+        public override void CheckTying()
+        {
+            double tensionResistance = 0;
+            foreach (BoltRow boltRow in BoltRows)
+            {
+                tensionResistance += boltRow.TensionResistance;
+            }
+
+            TyingUsage = TyingForce / tensionResistance;
+        }
+
         private void ShearChecks(int combinationIndex, Combination combination)
         {
             double resultantShear = Math.Sqrt(Math.Pow(MajorShearForce[combinationIndex], 2) +
                                               Math.Pow(MinorShearForce[combinationIndex], 2));
 
-            double shearUsage = resultantShear / BoltGroup.ShearResistance;
+            /*double shearUsage = resultantShear / BoltGroup.ShearResistance;
             double majorBearingUsage = Math.Max(MajorShearForce[combinationIndex] / BoltGroup.Member1MajorBearingResistance, MajorShearForce[combinationIndex] / BoltGroup.Member2MajorBearingResistance);
             double minorBearingUsage = Math.Max(MinorShearForce[combinationIndex] / BoltGroup.Member1MinorBearingResistance, MinorShearForce[combinationIndex] / BoltGroup.Member2MinorBearingResistance);
             
@@ -63,7 +82,7 @@ namespace Jpp.DesignCalculations.Calculations.Design.Connections
                 shearUsage,
                 minorBearingUsage,
                 minorBearingUsage
-            }.Max();
+            }.Max();*/
         }
     }
 }

@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MathNet.Numerics.LinearAlgebra.Complex.Solvers;
 
 namespace Jpp.DesignCalculations.Calculations.DataTypes.Connections
 {
+    // TODO: Add countersunk bolt option
+    // TODO: Add code for oversized/slotted holes
     public class Bolt : ContextlessCalculation
     {
         public double Diameter { get; set; }
