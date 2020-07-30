@@ -1,0 +1,36 @@
+﻿@page "/project/{Id}/element/{eId}"
+@using DesignCalculations.Blazor.Data
+@using Jpp.DesignCalculations.Calculations
+@inject ProjectStorage _projectStorage;
+@inject CalculationSessionManager _manager;
+@inject CalculationBrowser _browser;
+
+<h1>@_model.Name</h1>
+
+<div>
+    <TreeView Items="@_browser.Root.Children" />
+    @foreach (Calculation calc in _manager.ActiveCalculations)
+    {
+        <CalculationView Calculation="@calc" />
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public string eId { get; set; }
+
+
+    private Project _parent;
+    private Element _model;
+
+    protected override void OnInitialized()
+    {
+        _parent = _projectStorage.GetProject(Guid.Parse(Id));
+        _model = _parent.Elements[Guid.Parse(eId)];
+        base.OnInitialized();
+    }
+}

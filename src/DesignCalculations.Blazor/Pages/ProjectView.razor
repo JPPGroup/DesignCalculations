@@ -1,0 +1,50 @@
+﻿@page "/project/{Id}"
+@using DesignCalculations.Blazor.Data
+@inject ProjectStorage _projectStorage;
+@inject NavigationManager _nav;
+
+<h1>@_model.Name</h1>
+<h2>Project Details</h2>
+
+<input type="text" @bind="_model.Name" />
+
+<h2>Elements</h2>
+<div>
+    <button @onclick="NewElement">New Element</button>
+</div>
+<table>
+    @foreach (Element e in _model.Elements.Values)
+    {
+        <tr @onclick="() => { ElementSelect(e.Id); }">
+            <td>@e.Name</td>
+        </tr>
+    }
+</table>
+
+@code {
+
+    [Parameter]
+    public string Id { get; set; }
+
+    private Project _model;
+
+    protected override void OnInitialized()
+    {
+        _model = _projectStorage.GetProject(Guid.Parse(Id));
+        base.OnInitialized();
+    }
+
+    public void NewElement()
+    {
+        Element newElement = new Element();
+        newElement.Name = $"Element {_model.Elements.Count + 1}";
+
+        _model.Elements.Add(newElement.Id, newElement);
+    }
+
+    public void ElementSelect(Guid id)
+    {
+        _nav.NavigateTo($"project/{_model.Id}/element/{id}");
+    }
+
+}

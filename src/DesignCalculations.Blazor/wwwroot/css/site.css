@@ -184,6 +184,29 @@ app {
 
 /* CUSTOM FROM HERE */
 
+h1 {
+    font-family: calibri;
+    font-size: 24px;
+    color: #004B91;
+    background-color: aliceblue;
+}
+
+h2 {
+    font-family: calibri;
+    font-size: 20px;
+    color: #004B91;
+    background-color: aliceblue;
+}
+
+h3 {
+    font-family: calibri;
+    font-size: 18px;
+    color: #004B91;
+    background-color: aliceblue;
+}
+
+
+
 .scratchpad-title {
     font-size: 18px;
 }
