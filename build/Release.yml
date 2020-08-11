@@ -1,0 +1,67 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/*
+
+stages:
+- stage: TestBuild
+  jobs:
+  - job: Build
+    pool:
+      vmImage: 'windows-latest'
+    variables:
+      BuildConfiguration: 'Release' 
+    continueOnError: false
+    steps:   
+    - task: DotNetCoreCLI@2
+      inputs:
+      command: 'build'
+      projects: 'tests/DesignCalculations.Calculations.Tests/DesignCalculations.Calculations.Tests.csproj'
+      arguments: '/p:Configuration=$(BuildConfiguration);GeneratePackageOnBuild=false'
+    
+    - task: VSTest@2
+      inputs:
+      testSelector: 'testAssemblies' # Options: testAssemblies, testPlan, testRun
+      testAssemblyVer2: |
+        **\*Tests.dll
+        !**\*TestAdapter.dll
+        !**\obj\** 
+        !**\testhost.dll
+      searchFolder: '$(System.DefaultWorkingDirectory)' 
+      runSettingsFile: 'tests\default.runsettings'
+      #overrideTestrunParameters: >
+      #  -BaseUrl group.cluster.jppuk.net
+      runInParallel: True
+      codeCoverageEnabled: True      
+- stage: PackageDeploy
+  jobs:
+  - job: PackageDeploy
+    pool:
+      vmImage: 'windows-latest'
+    variables:
+      BuildConfiguration: 'Release' 
+    continueOnError: false
+    steps:   
+    - task: DotNetCoreCLI@2
+      inputs:
+      command: 'build'
+      projects: 'tests/DesignCalculations.Calculations.Tests/DesignCalculations.Calculations.Tests.csproj'
+      arguments: '/p:Configuration=$(BuildConfiguration);GeneratePackageOnBuild=false'
+    
+    - task: VSTest@2
+      inputs:
+      testSelector: 'testAssemblies' # Options: testAssemblies, testPlan, testRun
+      testAssemblyVer2: |
+        **\*Tests.dll
+        !**\*TestAdapter.dll
+        !**\obj\** 
+        !**\testhost.dll
+      searchFolder: '$(System.DefaultWorkingDirectory)' 
+      runSettingsFile: 'tests\default.runsettings'
+      #overrideTestrunParameters: >
+      #  -BaseUrl group.cluster.jppuk.net
+      runInParallel: True
+      codeCoverageEnabled: True      
