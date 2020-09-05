@@ -9,13 +9,13 @@
 
   <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
-    <PackageReference Include="Jpp.Common" Version="0.3.7" />
+    <PackageReference Include="Jpp.Common" Version="0.4.1" />
+    <PackageReference Include="Jpp.Common.Razor" Version="0.4.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\src\Common.Razor\Common.Razor.csproj" />
     <ProjectReference Include="..\DesignCalculations.Engine\DesignCalculations.Engine.csproj" />
   </ItemGroup>
 

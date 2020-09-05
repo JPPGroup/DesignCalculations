@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Jpp.Common;
@@ -50,43 +51,23 @@ namespace Jpp.DesignCalculations.Engine
 
         private void GetInputs()
         {
-            InputGroups = new Dictionary<string, CalculationPropertyGroup>();
-            var properties = Calcuation.GetType().GetProperties()
-                .Where(prop => prop.IsDefined(typeof(InputAttribute), false));
-
-            foreach (PropertyInfo propertyInfo in properties)
-            {
-                var attribute = (InputAttribute) propertyInfo.GetCustomAttributes(typeof(InputAttribute), false).First();
-                CalculationProperty newProperty = new CalculationProperty()
-                {
-                    Name = attribute.FriendlyName,
-                    Descritpion = attribute.Description,
-                    Group = attribute.Group,
-                    Property = propertyInfo
-                };
-                if (!InputGroups.ContainsKey(attribute.Group))
-                {
-                    CalculationPropertyGroup propertyGroup = new CalculationPropertyGroup()
-                    {
-                        Name = newProperty.Group
-                    };
-
-                    InputGroups.Add(newProperty.Group, propertyGroup);
-                }
-
-                InputGroups[newProperty.Group].Properties.Add(newProperty);
-            }
+            GetProperties(typeof(InputAttribute), InputGroups);
         }
 
         private void GetOutputs()
         {
-            OutputGroups = new Dictionary<string, CalculationPropertyGroup>();
+            GetProperties(typeof(OutputAttribute), OutputGroups);
+        }
+
+        private void GetProperties(Type searchAttribute, Dictionary<string, CalculationPropertyGroup> group)
+        {
+            group = new Dictionary<string, CalculationPropertyGroup>();
             var properties = Calcuation.GetType().GetProperties()
-                .Where(prop => prop.IsDefined(typeof(OutputAttribute), false));
+                .Where(prop => prop.IsDefined(searchAttribute, false));
 
             foreach (PropertyInfo propertyInfo in properties)
             {
-                var attribute = (OutputAttribute) propertyInfo.GetCustomAttributes(typeof(OutputAttribute), false).First();
+                var attribute = (PropertyAttribute)propertyInfo.GetCustomAttributes(searchAttribute, false).First();
                 CalculationProperty newProperty = new CalculationProperty()
                 {
                     Name = attribute.FriendlyName,
@@ -94,17 +75,17 @@ namespace Jpp.DesignCalculations.Engine
                     Group = attribute.Group,
                     Property = propertyInfo
                 };
-                if (!OutputGroups.ContainsKey(attribute.Group))
+                if (!group.ContainsKey(attribute.Group))
                 {
                     CalculationPropertyGroup propertyGroup = new CalculationPropertyGroup()
                     {
                         Name = newProperty.Group
                     };
 
-                    OutputGroups.Add(newProperty.Group, propertyGroup);
+                    group.Add(newProperty.Group, propertyGroup);
                 }
 
-                OutputGroups[newProperty.Group].Properties.Add(newProperty);
+                group[newProperty.Group].Properties.Add(newProperty);
             }
         }
 

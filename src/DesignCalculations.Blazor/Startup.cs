@@ -34,7 +34,6 @@ namespace DesignCalculations.Blazor
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            //services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<CalculationBrowser>();
             services.AddSingleton<UKSectionLibrary>();
             

@@ -92,12 +92,6 @@ namespace Jpp.DesignCalculations.Calculations.Tests.DataTypes.Connections
         [Test]
         public void CheckRequired()
         {
-            /*NHBC2020FoundationDepth calc = new NHBC2020FoundationDepth();
-
-            CalculationContext context = new CalculationContext();
-
-            Assert.Throws(typeof(ArgumentNullException), () => calc.Run());
-            Assert.IsFalse(calc.Calculated, "Calculation should not have completed");*/
             // TODO: Implement fully
             Assert.Pass();
         }

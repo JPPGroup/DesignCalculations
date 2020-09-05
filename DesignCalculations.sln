@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignCalculations.Blazor",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignCalculations.Engine", "src\DesignCalculations.Engine\DesignCalculations.Engine.csproj", "{2B6C80B7-43CE-4D5D-9378-CBA33E5F9F3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Razor", "..\Common\src\Common.Razor\Common.Razor.csproj", "{2EC825A5-DB84-466B-8A57-DB43C02E2CEC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +35,6 @@ Global
 		{2B6C80B7-43CE-4D5D-9378-CBA33E5F9F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B6C80B7-43CE-4D5D-9378-CBA33E5F9F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B6C80B7-43CE-4D5D-9378-CBA33E5F9F3B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EC825A5-DB84-466B-8A57-DB43C02E2CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EC825A5-DB84-466B-8A57-DB43C02E2CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EC825A5-DB84-466B-8A57-DB43C02E2CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EC825A5-DB84-466B-8A57-DB43C02E2CEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
