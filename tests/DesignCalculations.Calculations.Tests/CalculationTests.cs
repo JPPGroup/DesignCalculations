@@ -11,7 +11,8 @@ namespace Jpp.DesignCalculations.Calculations.Tests
         public void ResetCalculationCheck()
         {
             BaseCalculation calc = new BaseCalculation();
-            calc.Run();
+            calc.RequiredInput = true;
+            calc.Run(new OutputBuilder());
             
             Assert.IsTrue(calc.TestOutput);
             Assert.IsTrue(calc.Calculated);

@@ -6,6 +6,11 @@
     public class Combination
     {
         /// <summary>
+        /// Combination name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// Type of combination respresented
         /// </summary>
         public CombinationType CombinationType { get; set; }

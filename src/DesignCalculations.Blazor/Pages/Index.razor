@@ -1,0 +1,70 @@
+﻿@page "/"
+@using DesignCalculations.Blazor.Data
+@using Jpp.DesignCalculations.Calculations
+@using Jpp.DesignCalculations.Engine
+@inject CalculationBrowser Browser;
+@inject CalculationSessionManager Manager;
+@inject ProjectStorage _projectStorage;
+@inject NavigationManager _nav;
+
+<!--<h2>Available Calculations</h2>
+
+    
+    <ScratchpadView />
+    <div>
+        @foreach (Calculation calc in Manager.ActiveCalculations)
+        {
+            <CalculationView Calculation="@calc" />
+        }
+    </div>-->
+<div>
+    <h1>Projects</h1>
+    @foreach (Project p in _projectStorage.AllProjects())
+    {
+        <Card OnClick="@(() => { OpenProject(p.Id); })">
+            <h3>@p.Name</h3>
+            <button>Export</button>
+        </Card>
+    }
+
+<div>
+    <button @onclick="NewProject">New Project</button>
+    <button @onclick="ImportProject">Import Project</button>
+</div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        Manager.ActiveCalculations.CollectionChanged += (sender, args) => StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!_projectStorage.Initialized)
+        {
+            await _projectStorage.Initialize();
+            StateHasChanged();
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async void NewProject()
+    {
+        Jpp.DesignCalculations.Engine.Project p = new Jpp.DesignCalculations.Engine.Project();
+        p.Name = DateTime.Now.ToShortDateString();
+        await _projectStorage.NewProject(p);
+        _nav.NavigateTo($"project/{p.Id}");
+    }
+
+    public void OpenProject(Guid id)
+    {
+        _nav.NavigateTo($"project/{id}");
+    }
+
+    public void ImportProject()
+    {
+
+    }
+}

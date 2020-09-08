@@ -1,0 +1,46 @@
+﻿@using Jpp.Common.Razor.Services
+@using Jpp.DesignCalculations.Calculations.DataLibrary
+@using Jpp.DesignCalculations.Calculations.DataTypes
+@inject UKSectionLibrary Uk;
+@inject ModalService _modal;
+
+<select @bind="SectionId">
+    @foreach (CrossSection crossSection in Uk.UkbSections.Values)
+    {
+        <option value="@crossSection.Name">@crossSection.Name</option>
+    }
+</select>
+<button @onclick="Close">Ok</button>
+
+@code {
+    [Parameter]
+    public CrossSection Section { get; set; }
+
+    public string SectionId {
+        get { return _sectionId; }
+        set { _sectionId = value;
+            SetSectionProps();
+        }
+    }
+    private string _sectionId;
+
+    protected override void OnInitialized()
+    {
+        if (Section != null)
+        {
+            _sectionId = Section.Name;
+        }
+    }
+
+    public void SetSectionProps()
+    {
+        CrossSection selectedSection = Uk.UkbSections[SectionId];
+        Section = selectedSection;
+    }
+
+    public void Close()
+    {
+        _modal.Close(true, new KeyValuePair<string, object>("Section", Section));
+    }
+
+}

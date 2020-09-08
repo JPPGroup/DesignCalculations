@@ -1,0 +1,16 @@
+﻿@using System.Collections
+
+<ul id="myUL">
+
+
+    @foreach (BrowserInfo obj in Items)
+    {
+        <TreeItem Item="@obj" />
+    }
+</ul>
+
+
+@code {
+    [Parameter]
+    public IEnumerable<BrowserInfo> Items { get; set; }
+}

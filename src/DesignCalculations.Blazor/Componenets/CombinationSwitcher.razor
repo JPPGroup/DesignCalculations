@@ -1,0 +1,26 @@
+﻿@using System.Xml
+@using Jpp.DesignCalculations.Calculations
+@using Jpp.DesignCalculations.Calculations.DataTypes
+<select @bind="Model.CurrentCombination">
+    @{
+        int i = 0;
+        foreach (Combination c in Model.Context.Combinations)
+        {
+            <option value="@i">@c.Name</option>
+            i++;
+        }
+    }
+</select>
+<button @onclick="Add">Add Combination</button>
+
+@code {
+    [Parameter]
+    public CalculationViewModel Model { get; set; }
+
+    [Parameter] public EventCallback OnCombinationChange { get; set; }
+    
+    private void Add()
+    {
+        Model.AddCombination();
+    }
+}

@@ -117,6 +117,96 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AbstractBar_CombinedUsage_Description" xml:space="preserve">
+    <value>Combined moment, shear and axial usage</value>
+  </data>
+  <data name="AbstractBar_CombinedUsage_Group" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="AbstractBar_CombinedUsage_Name" xml:space="preserve">
+    <value>Usage</value>
+  </data>
+  <data name="AbstractBar_CrossSection_Description" xml:space="preserve">
+    <value>Cross Section of Section</value>
+  </data>
+  <data name="AbstractBar_CrossSection_Group" xml:space="preserve">
+    <value>Section Properties</value>
+  </data>
+  <data name="AbstractBar_CrossSection_Name" xml:space="preserve">
+    <value>Cross Section</value>
+  </data>
+  <data name="AbstractBar_Material_Description" xml:space="preserve">
+    <value>Material of Section</value>
+  </data>
+  <data name="AbstractBar_Material_Group" xml:space="preserve">
+    <value>Section Properties</value>
+  </data>
+  <data name="AbstractBar_Material_Name" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="EndPlateConnection_BoltRows_Description" xml:space="preserve">
+    <value>Bolts that form the connection</value>
+  </data>
+  <data name="EndPlateConnection_BoltRows_Group" xml:space="preserve">
+    <value>Connection Elements</value>
+  </data>
+  <data name="EndPlateConnection_BoltRows_Name" xml:space="preserve">
+    <value>Bolts</value>
+  </data>
+  <data name="EndPlateConnection_CalculationName" xml:space="preserve">
+    <value>Steel End Plate Connection</value>
+  </data>
+  <data name="EndPlateConnection_Code" xml:space="preserve">
+    <value>BS EN 1993-1-8</value>
+  </data>
+  <data name="EndPlateConnection_Description" xml:space="preserve">
+    <value>Eurocode calculation for a steel end plate connection</value>
+  </data>
+  <data name="EndPlateConnection_IncomingMemberSection_Description" xml:space="preserve">
+    <value>Cross section of the supported member</value>
+  </data>
+  <data name="EndPlateConnection_IncomingMemberSection_Group" xml:space="preserve">
+    <value>Supported Member</value>
+  </data>
+  <data name="EndPlateConnection_IncomingMemberSection_Name" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="EndPlateConnection_SupportingMemberRotation_Description" xml:space="preserve">
+    <value>Rotation in degrees clockwise positive. A value of 0 represents a connection parallel to the member flange</value>
+  </data>
+  <data name="EndPlateConnection_SupportingMemberRotation_Group" xml:space="preserve">
+    <value>Supported Member</value>
+  </data>
+  <data name="EndPlateConnection_SupportingMemberRotation_Name" xml:space="preserve">
+    <value>Rotation</value>
+  </data>
+  <data name="EndPlateConnection_SupportingMemberSection_Description" xml:space="preserve">
+    <value>Cross section of the supporting member</value>
+  </data>
+  <data name="EndPlateConnection_SupportingMemberSection_Group" xml:space="preserve">
+    <value>Supporting Member</value>
+  </data>
+  <data name="EndPlateConnection_SupportingMemberSection_Name" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="FinPlateConnection_CalculationName" xml:space="preserve">
+    <value>Steel Fin Plate Connection</value>
+  </data>
+  <data name="FinPlateConnection_Code" xml:space="preserve">
+    <value>BS EN 1993-1-8</value>
+  </data>
+  <data name="FinPlateConnection_Description" xml:space="preserve">
+    <value>Eurocode calculation for a steel fin plate connection</value>
+  </data>
+  <data name="FinPlate_CalculationName" xml:space="preserve">
+    <value>Fin Plate</value>
+  </data>
+  <data name="FinPlate_Code" xml:space="preserve">
+    <value>BS EN 1993-1-8</value>
+  </data>
+  <data name="FinPlate_Description" xml:space="preserve">
+    <value>Fin Plate</value>
+  </data>
   <data name="NHBC2020FoundationDepth_CalculationName" xml:space="preserve">
     <value>NHBC Foundation Depth 2020</value>
   </data>
@@ -236,5 +326,72 @@
   </data>
   <data name="NHBC2020FoundationDepth_TopOfConcreteLevel_Name" xml:space="preserve">
     <value>Top of Concrete</value>
+  </data>
+  <data name="Plate_MajorDimension_Description" xml:space="preserve">
+    <value>Height of plate</value>
+  </data>
+  <data name="Plate_MajorDimension_Group" xml:space="preserve">
+    <value>Geometry</value>
+  </data>
+  <data name="Plate_MajorDimension_Name" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="Plate_MinorDimension_Description" xml:space="preserve">
+    <value>Width of plate</value>
+  </data>
+  <data name="Plate_MinorDimension_Group" xml:space="preserve">
+    <value>Geometry</value>
+  </data>
+  <data name="Plate_MinorDimension_Name" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Plate_Thickness_Description" xml:space="preserve">
+    <value>Thickness of plate</value>
+  </data>
+  <data name="Plate_Thickness_Group" xml:space="preserve">
+    <value>Geometry</value>
+  </data>
+  <data name="Plate_Thickness_Name" xml:space="preserve">
+    <value>Thickness</value>
+  </data>
+  <data name="SteelConnection_MajorShearForce_Description" xml:space="preserve">
+    <value>Shear Force about the major axis</value>
+  </data>
+  <data name="SteelConnection_MajorShearForce_Group" xml:space="preserve">
+    <value>Design Loads</value>
+  </data>
+  <data name="SteelConnection_MajorShearForce_Name" xml:space="preserve">
+    <value>Major Shear Force</value>
+  </data>
+  <data name="SteelConnection_MinorShearForce_Description" xml:space="preserve">
+    <value>Shear Force about the minoraxis</value>
+  </data>
+  <data name="SteelConnection_MinorShearForce_Group" xml:space="preserve">
+    <value>Design Loads</value>
+  </data>
+  <data name="SteelConnection_MinorShearForce_Name" xml:space="preserve">
+    <value>Minor Shear Force</value>
+  </data>
+  <data name="SteelConnection_TyingForce_Description" xml:space="preserve">
+    <value>Tying Force the connection is to be designed in isolation for</value>
+  </data>
+  <data name="SteelConnection_TyingForce_Group" xml:space="preserve">
+    <value>Design Loads</value>
+  </data>
+  <data name="SteelConnection_TyingForce_Name" xml:space="preserve">
+    <value>Tying Force</value>
+  </data>
+  <data name="SteelConnection_TyingUsage_Description" xml:space="preserve">
+    <value>Utilisation of tying force resistance as a percentage</value>
+  </data>
+  <data name="SteelConnection_TyingUsage_Group" xml:space="preserve">
+    <value>Tying</value>
+  </data>
+  <data name="SteelConnection_TyingUsage_Name" xml:space="preserve">
+    <value>Tying Utilisation</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="UKB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UKB.csv;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

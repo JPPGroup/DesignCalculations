@@ -1,4 +1,5 @@
 ﻿using System;
+using Jpp.DesignCalculations.Calculations.Attributes;
 using Jpp.DesignCalculations.Calculations.Properties;
 
 namespace Jpp.DesignCalculations.Calculations.Design.Foundations
@@ -73,7 +74,7 @@ namespace Jpp.DesignCalculations.Calculations.Design.Foundations
             Code = Resources.NHBC2020FoundationDepth_Code;
         }
 
-        public override void Run()
+        public override void RunBody(OutputBuilder builder)
         {
             ResetCalculation();
             VerifyInputs();
