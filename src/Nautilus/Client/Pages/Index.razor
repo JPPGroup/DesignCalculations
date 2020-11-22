@@ -1,0 +1,50 @@
+﻿@page "/"
+@using Nautilus.Client.Data
+@using Jpp.DesignCalculations.Engine
+@inject IEnumerable<IProjectSource> _projectSources;
+@inject NavigationManager _nav;
+
+<h1>Nautilus Engineer</h1>
+
+<h2>New Project</h2>
+
+<div>
+    <button @onclick="newProject">New Project</button>
+</div>
+
+<h2>Recent Projects</h2>
+@foreach (Jpp.DesignCalculations.Engine.Project p in _projects)
+{
+    <ProjectSummaryCard Project="p"/>
+}
+
+Welcome to your new app.
+
+@code
+{
+    private List<Jpp.DesignCalculations.Engine.Project> _projects = new List<Jpp.DesignCalculations.Engine.Project>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _projects = new List<Jpp.DesignCalculations.Engine.Project>();
+
+        foreach (IProjectSource projectSource in _projectSources)
+        {
+            _projects.AddRange(projectSource.GetProjects());
+        }
+
+        if(_projects.Any())
+            _projects = _projects.OrderByDescending(p => p.LastModified).ToList();
+    }
+
+    private void newProject()
+    {
+        _nav.NavigateTo("newproject");
+    }
+
+    /*protected override async Task OnInitializedAsync()
+    {
+        //await localStorage.SetItemAsync("name", "John Smith");
+        var name = await _localStorage.GetItemAsync<string>("name");
+    }*/
+}

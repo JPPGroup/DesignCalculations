@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Jpp.Common;
 
 namespace Jpp.DesignCalculations.Engine
@@ -8,7 +9,14 @@ namespace Jpp.DesignCalculations.Engine
     {
         public Guid Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
+
+        public string ProjectReference { get; set; }
+
+        public string Client { get; set; }
+
+        public DateTime LastModified { get; private set; }
 
         public Dictionary<Guid, Element> Elements { get; private set; }
 

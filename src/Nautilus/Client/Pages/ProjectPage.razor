@@ -1,0 +1,9 @@
+﻿@page "/project/{id:guid}"
+
+<h3>Project</h3>
+@Id.ToString();
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+}

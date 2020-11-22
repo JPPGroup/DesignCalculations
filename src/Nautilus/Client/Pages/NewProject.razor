@@ -1,0 +1,73 @@
+﻿@page "/newproject"
+@using Nautilus.Client.Data
+@using Jpp.DesignCalculations.Engine
+@inject IEnumerable<IProjectSource> _projectSources;
+@inject NavigationManager _nav;
+
+<h3>Create New Project</h3>
+
+<select name="destination" id="destination" @bind="_destinationName">
+    <option disabled selected value></option>
+    @foreach (IProjectSource source in _projectSources)
+    {
+        <option value="@source.Name">@source.Name</option>
+    }
+</select>
+
+@if (_destination != null)
+{
+    <EditForm Model="@_newProject" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>
+            <label>
+                Name:
+                <InputText id="name" @bind-Value="_newProject.Name" />
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Reference:
+                <InputText id="name" @bind-Value="_newProject.ProjectReference" />
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Client:
+                <InputText id="client" @bind-Value="_newProject.Client" />
+            </label>
+        </div>
+
+        <div>
+            <button type="submit">Create</button>
+        </div>
+    </EditForm>
+}
+
+@code {
+    private Project _newProject = new Project();
+
+    private string _destinationName
+    {
+        get { return _destinationNameBacker; }
+        set
+        {
+            _destinationNameBacker = value;
+            _destination = _projectSources.First(p => p.Name == _destinationNameBacker);
+            this.StateHasChanged();
+        }
+    }
+
+    string _destinationNameBacker;
+
+    private IProjectSource _destination;
+
+    private void HandleValidSubmit()
+    {
+        _destination.AddProjectAsync(_newProject);
+        _nav.NavigateTo($"project/{_newProject.Id}");
+    }
+}

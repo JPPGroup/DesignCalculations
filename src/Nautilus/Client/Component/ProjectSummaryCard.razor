@@ -1,0 +1,18 @@
+﻿@using Jpp.DesignCalculations.Engine
+@inject NavigationManager _nav;
+
+<Card OnClick="@(() => { OpenProject(); })">
+    <div>
+        <h3>@Project.Name</h3>
+    </div>
+</Card>
+
+@code {
+    [Parameter]
+    public Project Project { get; set; }
+
+    private void OpenProject()
+    {
+        _nav.NavigateTo($"project/{Project.Id}");
+    }
+}
