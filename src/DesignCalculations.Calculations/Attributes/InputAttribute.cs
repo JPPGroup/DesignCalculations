@@ -1,7 +1,4 @@
-﻿using System;
-using Jpp.DesignCalculations.Calculations.Properties;
-
-namespace Jpp.DesignCalculations.Calculations.Attributes
+﻿namespace Jpp.DesignCalculations.Calculations.Attributes
 {
     public class InputAttribute : PropertyAttribute
     {
@@ -14,9 +11,7 @@ namespace Jpp.DesignCalculations.Calculations.Attributes
 
         public InputAttribute(string name, bool required = false, UnitTypes units = UnitTypes.Undefined) : base(name, "", "Inputs", units)
         {
-
             Required = required;
-
         }
     }
 }

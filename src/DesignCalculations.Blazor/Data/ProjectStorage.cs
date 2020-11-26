@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
-using Jpp.Common;
-using Jpp.DesignCalculations.Engine;
+using Jpp.DesignCalculations.Engine.Project;
 using Newtonsoft.Json;
 
 namespace DesignCalculations.Blazor.Data

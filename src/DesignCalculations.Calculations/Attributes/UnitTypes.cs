@@ -10,6 +10,7 @@ namespace Jpp.DesignCalculations.Calculations.Attributes
         Usage,
         Length,
         Area,
-        Volume
+        Volume,
+        Pressure
     }
 }

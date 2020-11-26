@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using DesignCalculations.Blazor.Data
 @using Jpp.DesignCalculations.Calculations
-@using Jpp.DesignCalculations.Engine
+@using Jpp.DesignCalculations.Engine.Project
 @inject CalculationBrowser Browser;
 @inject CalculationSessionManager Manager;
 @inject ProjectStorage _projectStorage;
@@ -52,7 +52,7 @@
 
     public async void NewProject()
     {
-        Jpp.DesignCalculations.Engine.Project p = new Jpp.DesignCalculations.Engine.Project();
+        Jpp.DesignCalculations.Engine.Project.Project p = new Jpp.DesignCalculations.Engine.Project.Project();
         p.Name = DateTime.Now.ToShortDateString();
         await _projectStorage.NewProject(p);
         _nav.NavigateTo($"project/{p.Id}");

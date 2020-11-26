@@ -1,45 +1,102 @@
 ﻿@page "/"
 @using Nautilus.Client.Data
-@using Jpp.DesignCalculations.Engine
+@using Jpp.DesignCalculations.Engine.Project
 @inject IEnumerable<IProjectSource> _projectSources;
+@inject IEnumerable<ITemplateSource> _templateSources;
 @inject NavigationManager _nav;
 
-<h1>Nautilus Engineer</h1>
-
-<h2>New Project</h2>
-
-<div>
-    <button @onclick="newProject">New Project</button>
+<div class="section">
+    <h1>Whats New</h1>
+    <hr />
+    <div>
+        <ul>
+            <li>Everything!</li>
+        </ul>
+    </div>
 </div>
 
-<h2>Recent Projects</h2>
-@foreach (Jpp.DesignCalculations.Engine.Project p in _projects)
-{
-    <ProjectSummaryCard Project="p"/>
-}
+<div class="section">
+    <h1>New Project</h1>
+    <hr />
+    <div>
+        @foreach (Project p in _templates)
+        {
+          <ProjectTemplateCard Project="p" Name="@p.Name"/>
+        }
+    </div>
+</div>
 
-Welcome to your new app.
+<div class="section">
+    <h1>Recent Projects</h1>
+    <hr />
+    @if (_projects.Any())
+    {
+        foreach (Project p in _projects)
+        {
+            <ProjectSummaryCard Project="@p" />
+        }
+    }
+    else
+    {
+        <p>No projects found.</p>
+    }
+</div>
 
 @code
 {
-    private List<Jpp.DesignCalculations.Engine.Project> _projects = new List<Jpp.DesignCalculations.Engine.Project>();
+    private List<Jpp.DesignCalculations.Engine.Project.Project> _projects = new List<Jpp.DesignCalculations.Engine.Project.Project>();
+    private List<Jpp.DesignCalculations.Engine.Project.Project> _templates = new List<Jpp.DesignCalculations.Engine.Project.Project>();
+
 
     protected override async Task OnParametersSetAsync()
     {
-        _projects = new List<Jpp.DesignCalculations.Engine.Project>();
-
         foreach (IProjectSource projectSource in _projectSources)
         {
-            _projects.AddRange(projectSource.GetProjects());
+            projectSource.ProjectsChanged += (sender, args) =>
+            {
+                StateHasChanged();
+                BuildProjects();
+            };
         }
 
-        if(_projects.Any())
-            _projects = _projects.OrderByDescending(p => p.LastModified).ToList();
+        BuildProjects();
     }
 
     private void newProject()
     {
         _nav.NavigateTo("newproject");
+    }
+
+    private void BuildProjects()
+    {
+        //Optimise this
+        _projects = new List<Jpp.DesignCalculations.Engine.Project.Project>();
+
+        foreach (IProjectSource projectSource in _projectSources)
+        {
+            _projects.AddRange(projectSource.GetProjects());
+            projectSource.ProjectsChanged += (sender, args) =>
+            {
+                StateHasChanged();
+            };
+        }
+
+        if (_projects.Any())
+            _projects = _projects.OrderByDescending(p => p.LastModified).ToList();
+
+        _templates = new List<Jpp.DesignCalculations.Engine.Project.Project>();
+
+        foreach (ITemplateSource templateSource in _templateSources)
+        {
+            _templates.AddRange(templateSource.GetProjects());
+            templateSource.ProjectsChanged += (sender, args) =>
+            {
+                StateHasChanged();
+            };
+        }
+
+        if (_templates.Any())
+            _templates = _templates.OrderBy(p => p.LastModified).ToList();
     }
 
     /*protected override async Task OnInitializedAsync()

@@ -1,18 +1,41 @@
-﻿@using Jpp.DesignCalculations.Engine
+﻿@using Jpp.DesignCalculations.Engine.Project
+@using Nautilus.Client.Data
 @inject NavigationManager _nav;
+@inject IEnumerable<IProjectSource> _projectSources;
 
-<Card OnClick="@(() => { OpenProject(); })">
-    <div>
-        <h3>@Project.Name</h3>
+
+<div class="summary">
+    <div class="title">
+        <h3>
+            @Project.Name
+            <button class="icon" @onclick="DeleteProject">
+                <span class="oi oi-delete" />
+            </button>
+        </h3>
     </div>
-</Card>
+    <div class="footer">
+        <button class="icon" @onclick="OpenProject">
+            <span class="oi oi-arrow-thick-right" />
+        </button>
+    </div>
+</div>
 
 @code {
     [Parameter]
-    public Project Project { get; set; }
+    public Jpp.DesignCalculations.Engine.Project.Project Project { get; set; }
 
     private void OpenProject()
     {
         _nav.NavigateTo($"project/{Project.Id}");
+    }
+
+    private async void DeleteProject()
+    {
+        //TODO: Add confirmation
+        foreach (IProjectSource projectSource in _projectSources)
+        {
+            if (await projectSource.DeleteProjectAsync(Project.Id))
+                return;
+        }
     }
 }

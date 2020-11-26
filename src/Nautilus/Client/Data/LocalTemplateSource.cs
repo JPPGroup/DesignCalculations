@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
-using Jpp.DesignCalculations.Engine;
 using Jpp.DesignCalculations.Engine.Project;
 
 namespace Nautilus.Client.Data
 {
-    class LocalProjectSource : IProjectSource
+    class LocalTemplateSource : ITemplateSource
     {
         private ISyncLocalStorageService _localStorage;
         private ILocalStorageService _asyncLocalStorage;
         private List<Project> _projects;
 
-        public LocalProjectSource(ISyncLocalStorageService localStorage, ILocalStorageService asyncLocalStorage)
+        public LocalTemplateSource(ISyncLocalStorageService localStorage, ILocalStorageService asyncLocalStorage)
         {
-            _localStorage = localStorage;
+            /*_localStorage = localStorage;
             _asyncLocalStorage = asyncLocalStorage;
             _projects = _localStorage.GetItem<List<Project>>("projects");
             if(_projects == null)
-                _projects = new List<Project>();
+                _projects = new List<Project>();*/
+            _projects = new List<Project>()
+            {
+                new Project()
+                {
+                    Name = "Blank Template"
+                }
+            };
         }
 
         public string Name { get; } = "Browser";
@@ -55,8 +61,8 @@ namespace Nautilus.Client.Data
 
         private async Task SaveAsync()
         {
-            await _asyncLocalStorage.SetItemAsync("projects", _projects);
-            ProjectsChanged?.Invoke(this, EventArgs.Empty);
+            /*await _asyncLocalStorage.SetItemAsync("projects", _projects);
+            ProjectsChanged?.Invoke(this, EventArgs.Empty);*/
         }
     }
 }

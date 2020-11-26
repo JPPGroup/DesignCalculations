@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Jpp.DesignCalculations.Calculations.Properties;
 
 namespace Jpp.DesignCalculations.Calculations.Attributes

@@ -23,4 +23,13 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Component\ProjectSummaryCard - Copy - Copy.razor.css">
+      <DependentUpon>ProjectSummaryCard - Copy.razor.css</DependentUpon>
+    </None>
+    <None Update="Component\ProjectSummaryCard - Copy.razor.css">
+      <DependentUpon>ProjectSummaryCard.razor.css</DependentUpon>
+    </None>
+  </ItemGroup>
+
 </Project>

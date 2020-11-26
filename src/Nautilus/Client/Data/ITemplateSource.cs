@@ -5,7 +5,7 @@ using Jpp.DesignCalculations.Engine.Project;
 
 namespace Nautilus.Client.Data
 {
-    public interface IProjectSource
+    public interface ITemplateSource
     {
         string Name { get; }
 

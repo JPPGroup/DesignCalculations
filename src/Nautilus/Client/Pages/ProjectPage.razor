@@ -1,9 +1,41 @@
 ﻿@page "/project/{id:guid}"
+@using Nautilus.Client.Data
+@using Jpp.DesignCalculations.Engine.Project
+@using Microsoft.Extensions.Logging
+@inject IEnumerable<IProjectSource> _projectSources;
+@inject ILogger<ProjectPage> _logger;
 
-<h3>Project</h3>
-@Id.ToString();
+@if (_model != null)
+{
+    <h3>Project</h3>
+    @Id.ToString()
+    ;
+
+    <h4>@_model.Standard.Name</h4>
+}
+else
+{
+    _logger.LogError($"Project {Id} not found in sources");
+<div>Project not found.</div>
+}
 
 @code {
     [Parameter]
     public Guid Id { get; set; }
+
+    private Project _model { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        foreach (IProjectSource projectSource in _projectSources)
+        {
+            var search = await projectSource.GetProjectAsync(Id);
+            if (search != null)
+            {
+                _model = search;
+            }
+        }
+
+        await base.OnParametersSetAsync();
+    }
 }

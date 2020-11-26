@@ -1,54 +1,82 @@
-﻿@page "/newproject"
+﻿@page "/newproject/{id:guid}"
 @using Nautilus.Client.Data
-@using Jpp.DesignCalculations.Engine
+@using Jpp.DesignCalculations.Engine.Project
+@using Microsoft.Extensions.Logging
 @inject IEnumerable<IProjectSource> _projectSources;
+@inject IEnumerable<ITemplateSource> _templateSources;
 @inject NavigationManager _nav;
+@inject ILogger<ProjectPage> _logger;
 
 <h3>Create New Project</h3>
 
-<select name="destination" id="destination" @bind="_destinationName">
-    <option disabled selected value></option>
-    @foreach (IProjectSource source in _projectSources)
-    {
-        <option value="@source.Name">@source.Name</option>
-    }
-</select>
+@if (_newProject != null)
+{
+
+    <select name="destination" id="destination" @bind="_destinationName">
+        <option disabled selected value></option>
+        @foreach (IProjectSource source in _projectSources)
+        {
+            <option value="@source.Name">@source.Name</option>
+        }
+    </select>
 
 @if (_destination != null)
 {
     <EditForm Model="@_newProject" OnValidSubmit="@HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
 
         <div>
             <label>
                 Name:
-                <InputText id="name" @bind-Value="_newProject.Name" />
+                <InputText id="name" @bind-Value="_newProject.Name"/>
             </label>
         </div>
 
         <div>
             <label>
                 Reference:
-                <InputText id="name" @bind-Value="_newProject.ProjectReference" />
+                <InputText id="reference" @bind-Value="_newProject.ProjectReference"/>
             </label>
         </div>
 
         <div>
             <label>
                 Client:
-                <InputText id="client" @bind-Value="_newProject.Client" />
+                <InputText id="client" @bind-Value="_newProject.Client"/>
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Design Standard:
+                <select name="standard" id="standard" @bind="_standard">
+                    <!--<option disabled selected value></option>-->
+                    @foreach (string standard in Project.GetAvailableStandards().Keys)
+                    {
+                        <option value="@standard">@standard</option>
+                    }
+                </select>
             </label>
         </div>
 
         <div>
             <button type="submit">Create</button>
         </div>
+
     </EditForm>
+}
+}
+else
+{
+    _logger.LogError($"Project {Id} not found in sources");
+<p>
+    Project template not found.
+</p>
 }
 
 @code {
-    private Project _newProject = new Project();
+    private string _standard;
 
     private string _destinationName
     {
@@ -65,8 +93,30 @@
 
     private IProjectSource _destination;
 
+    [Parameter]
+    public Guid Id { get; set; }
+
+    private Project _newProject { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        foreach (ITemplateSource projectSource in _templateSources)
+        {
+            var search = await projectSource.GetProjectAsync(Id);
+            if (search != null)
+            {
+                _newProject = await search.DuplicateFromTemplate();
+            }
+        }
+
+        await base.OnParametersSetAsync();
+    }
+
     private void HandleValidSubmit()
     {
+        var standards = Project.GetAvailableStandards();
+        _newProject.Standard = standards[_standard];
+
         _destination.AddProjectAsync(_newProject);
         _nav.NavigateTo($"project/{_newProject.Id}");
     }
